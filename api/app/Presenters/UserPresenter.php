@@ -40,29 +40,57 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         $this->sendJson($object);
     }
 
+    // vrati sa 
+    // true ak sa naslo meno a heslo je spravne
+    // false ak je heslo zle
+    // 
     public function actionLogin() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
         if($req->getMethod() == 'POST') {
+            //rozbali poziadavku
             $body = Json::decode($req->getRawBody());
+
+            //vytvori sa novy objekt
             $object = new stdClass();
+            $object->err = "";
+            
+            // TODO osetrit heslo, zahashovat v clientovi
 
-            $data = $this->database->query("SELECT * FROM pouzivatelia where User = " + $body->userMeno + " and Heslo = " + $body->heslo)->fetchAll();
-            // TODO osetrit heslo
+            // vykona query
+            $data = $this->database->query("SELECT user, heslo FROM pouzivatelia WHERE user = ? ", $body->userMeno)->fetchAll();
 
-            // TODO ak sa vrati ine ako prazdna daj status prihlaseneho a daj tam uid
-            //if ()
+            // ak sa vrati neprazdna tak posli spravu uspesny login 
+            if (count($data) === 0) {
+                // prejde vsetky
+                if($data[0]->heslo = $body->heslo) {
+                    $object->status = true;
+                } else {
+                    $object->status = false;
+                    $object->err = "heslo";
+                }
 
-            $object->status = true;
-            $object->meno = $body->userMeno;
-            $object->hesloUser = $body->heslo;
+            } else {
+                $object->status = false;
+                $object->err = "userName";
+            }
+
             $this->sendJson($object);
         }   
-        $this->sendJson(null);
+
+    $this->sendJson(null);
     }
 
-    
+    public function register() {
 
-    
+    }
+
+    public function delete() {
+        
+    }
+
+    public function edit() {
+        
+    }
 }

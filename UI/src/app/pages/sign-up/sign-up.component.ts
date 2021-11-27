@@ -22,13 +22,18 @@ export class SignUpComponent implements OnInit {
   // TODO post zmenit na register
 
   register(): void {
-    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-    this.http.post(environment.url + "/user/login", {
-    userMeno:this.userMeno, 
-    heslo:this.heslo
-    },{headers}).subscribe(response=>{
-      console.log(response);
-    });
+    if(this.reHeslo == this.heslo) {
+      const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+      this.http.post(environment.url + "/user/login", {
+      userMeno:this.userMeno, 
+      heslo:this.heslo
+      },{headers}).subscribe(response=>{
+        console.log(response);
+      });
+    } else {
+      //TODO vypis meno a heslo sa neyhoduju
+    }
+   
   }
 
 }

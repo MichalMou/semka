@@ -24,13 +24,16 @@ export class LoginComponent implements OnInit {
   } 
 
   login(): void {
+    // TODO zahashovat heslo + meno
+    var hesloHash = this.heslo;
     const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
     this.http.post(environment.url + "/user/login", {
     userMeno:this.userMeno, 
-    heslo:this.heslo
+    heslo:hesloHash
     },{headers}).subscribe(response=>{
       console.log(response);
     });
+    // TODO podla response vypisat error alebo zapisat niektde udaje 
   }
 
 }
