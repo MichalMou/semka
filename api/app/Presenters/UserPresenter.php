@@ -46,9 +46,15 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         
         if($req->getMethod() == 'POST') {
             $body = Json::decode($req->getRawBody());
-            $data = $this->database->query("SELECT * FROM pouzivatelia where User = " + $body->userMeno + " and Heslo = " + $body->heslo)->fetchAll();
-
             $object = new stdClass();
+
+            $data = $this->database->query("SELECT * FROM pouzivatelia where User = " + $body->userMeno + " and Heslo = " + $body->heslo)->fetchAll();
+            // TODO osetrit heslo
+
+            // TODO ak sa vrati ine ako prazdna daj status prihlaseneho a daj tam uid
+            //if ()
+
+            $object->status = true;
             $object->meno = $body->userMeno;
             $object->hesloUser = $body->heslo;
             $this->sendJson($object);

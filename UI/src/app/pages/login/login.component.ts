@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   public userMeno = "";
   public heslo = "";
 
-
   constructor(private http : HttpClient) { }
 
   ngOnInit(): void {

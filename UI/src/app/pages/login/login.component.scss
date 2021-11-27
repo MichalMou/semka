@@ -1,8 +1,12 @@
-input[type=text], input[type=password] {
+.login {
+  margin-top: 10%;
+}
+
+  input {
     width: 100%;
     max-width: 200px;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 50px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;

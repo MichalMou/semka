@@ -1,1 +1,22 @@
-<p>sign-up works!</p>
+<div class="text-center register">
+    <h1>Registrácia</h1>
+    <div>
+        <label for="usermeno"><b>Meno</b></label>
+        <input type="text" placeholder="Zadaj meno" name="usermeno" [(ngModel)]="userMeno" required >
+    </div>
+    <div>
+        <label for="heslo"><b>Heslo</b></label>
+        <input type="password" placeholder="Zadaj heslo" name="heslo" [(ngModel)]="heslo" required>    
+    </div>
+    <div>
+        <label for="reHeslo"><b>Zopakované heslo</b></label>
+        <input type="password" placeholder="Zadaj znovu heslo" name="reHeslo" [(ngModel)]="reHeslo" required >
+    </div>
+    <div>
+        <label for="email"><b>Meno</b></label>
+        <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="email" required >
+    </div>
+    <div>
+        <button (click)="register()" >Registruj</button>
+    </div>
+</div>
