@@ -1,0 +1,208 @@
+/* < 576 */
+/* >= 576 SM */
+/* >= 768 MD */
+/* >= 992 LG */
+/* >= 1200 XL */
+
+/*
+    box = container s urcitou velkostou (kukni hore)
+    box-full = container s 100% velkostou
+    box-SZ = container s maximalnou velkostou SZ (kukni hore)
+ */
+/*
+    col-X = pocet blokov z 24
+    col-SZ-X = pocet bloko na SZ a vacsom rozliseni
+    col-offset-X = odsadi div od laveho kraja
+    col-SZ-offset-X
+ */
+/*
+    text-X = zarovnanie textu
+    text-SZ-X
+ */
+/*
+    mg-X = margin s X = { 3, 6, 12, 24 }
+    mg-POS-X = margin s POS = { top, left, right, bottom } s X = { 3, 6, 12, 18, 24 }
+    mg-SZ-X
+    mg-POS-SZ-X
+
+    pd-X = padding s X = { 3, 6, 9, 12, 24 }
+    pd-POS-X = padding s POS = { top, left, right, bottom } s X = { 3, 6, 9, 12, 18, 24 }
+    pd-SZ-X
+    pd-POS-SZ-X
+ */
+/*
+    pull-right = natlaci na pravu stranu
+    pull-SZ-right
+ */
+/*
+    d-X = nastavi parameter display (pre COL je defaultne inline-block), X = { none, block, inline, inline-block, table, table-cell }
+    d-SZ-X
+ */
+
+/*
+ nepouzite
+$c1:   4.166666667%;
+$c2:   8.333333333%;
+$c3:  12.5%;
+$c4:  16.666666667%;
+$c5:  20.833333333%;
+$c6:  25%;
+$c7:  29.166666667%;
+$c8:  33.333333333%;
+$c9:  37.5%;
+$c10: 41.666666667%;
+$c11: 45.833333333%;
+$c12: 50%;
+$c13: 54.166666667%;
+$c14: 58.333333333%;
+$c15: 62.5%;
+$c16: 66.666666667%;
+$c17: 70.833333333%;
+$c18: 75%;
+$c19: 79.166666667%;
+$c20: 83.333333333%;
+$c21: 87.5%;
+$c22: 91.666666667%;
+$c23: 95.833333333%;
+$c24: 100%;*/
+
+/*.col-1 {
+    display: inline-block;
+    width: $c1;
+    max-width: $c1;
+    min-width: $c1;
+}*/
+
+$sizes: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$aligns: center, justify, left, right;
+$displays: none, block, inline, inline-block, table, table-cell;
+$mgspds: 3px, 6px, 9px, 12px, 18px, 24px;
+$verticals: top, left, right, bottom;
+
+.box {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.box-full {
+    width: 100%;
+    display: block;
+}
+
+@for $i from 1 through 24 {
+    .col-#{$i} {
+        display: inline-block;
+        width: $i * 4.166666666666666%;
+        max-width: $i * 4.166666666666666%;
+        min-width: $i * 4.166666666666666%;
+        vertical-align: top;
+    }
+ 
+    .col-offset-#{$i} {
+        margin-left: $i * 4.166666666666666%;
+    }
+}
+
+@each $align in $aligns {
+    .text-#{$align} {
+        text-align: $align;
+    }
+}
+
+@each $display in $displays {
+    .d-#{$display} {
+        display: $display;
+        vertical-align: top;
+    }
+}
+
+@each $mgpd in $mgspds {
+    .mg-#{$mgpd} {
+        margin: $mgpd;
+    }
+
+    .pd-#{$mgpd} {
+        padding: $mgpd;
+    }
+
+    @each $vert in $verticals {
+        .mg-#{$vert}-#{$mgpd} {
+            margin: $mgpd;
+        }
+
+        .pd-#{$vert}-#{$mgpd} {
+            padding: $mgpd;
+        }
+    }
+}
+
+@each $size, $px in $sizes {
+
+    .box-#{$size} {
+        width: 100%;
+        display: block;
+    }
+
+    @media (min-width: $px) {
+
+        .box {
+            width: $px;
+            display: block;
+            margin: auto;
+        }
+
+        .box-#{$size} {
+            width: $px;
+            display: block;
+            margin: auto;
+        }
+
+        @for $i from 1 through 24 {
+            .col-#{$size}-#{$i} {
+                display: inline-block;
+                width: $i * 4.166666666666666%;
+                max-width: $i * 4.166666666666666%;
+                min-width: $i * 4.166666666666666%;
+                vertical-align: top;
+            }
+
+            .col-#{$size}-offset-#{$i} {
+                margin-left: $i * 4.166666666666666%;
+            }
+        }
+
+        @each $align in $aligns {
+            .text-#{$size}-#{$align} {
+                text-align: $align;
+            }
+        }
+
+        @each $display in $displays {
+            .d-#{$size}-#{$display} {
+                display: $display;
+                vertical-align: top;
+            }
+        }
+
+        @each $mgpd in $mgspds {
+            .mg-#{$size}-#{$mgpd} {
+                margin: $mgpd;
+            }
+    
+            .pd-#{$size}-#{$mgpd} {
+                padding: $mgpd;
+            }
+    
+            @each $vert in $verticals {
+                .mg-#{$size}-#{$vert}-#{$mgpd} {
+                    margin: $mgpd;
+                }
+        
+                .pd-#{$size}-#{$vert}-#{$mgpd} {
+                    padding: $mgpd;
+                }
+            }
+        }
+    }
+}

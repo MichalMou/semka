@@ -1,0 +1,14 @@
+<p>login works!</p>
+<div class="text-center">
+    <div class="">
+        <label for="usermeno"><b>Meno</b></label>
+        <input type="text" placeholder="Zadaj meno" name="usermeno" [(ngModel)]="userMeno" required >
+    </div>
+    <div class="">
+        <label for="heslo"><b>Heslo</b></label>
+        <input type="password" placeholder="Zadaj heslo" name="heslo" [(ngModel)]="heslo" required>    
+    </div>
+    <div class="">
+        <button (click)="submit()" >Prihlasit</button>
+    </div>
+</div>
