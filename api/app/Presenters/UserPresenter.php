@@ -55,15 +55,16 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->err = "";
+            $object->status = false;
             
-            // TODO osetrit heslo, zahashovat v clientovi
+            // TODO osetrit heslo
+            $hashedHeslo = mf5($body->heslo. + '');
 
             // vykona query
             $data = $this->database->query("SELECT user, heslo FROM pouzivatelia WHERE user = ? ", $body->userMeno)->fetchAll();
 
             // ak sa vrati neprazdna tak posli spravu uspesny login 
             if (count($data) === 0) {
-                // prejde vsetky
                 if($data[0]->heslo = $body->heslo) {
                     $object->status = true;
                 } else {
@@ -77,9 +78,10 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             }
 
             $this->sendJson($object);
-        }   
 
-    $this->sendJson(null);
+        } else {
+            $this->sendJson(null);
+        }  
     }
 
     public function register() {
