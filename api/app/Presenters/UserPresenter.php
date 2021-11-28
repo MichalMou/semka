@@ -58,7 +58,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $object->status = false;
             
             // TODO osetrit heslo
-            $hashedHeslo = mf5($body->heslo. + '');
+            $hashedHeslo = md5($body->heslo. + '');
 
             // vykona query
             $data = $this->database->query("SELECT user, heslo FROM pouzivatelia WHERE user = ? ", $body->userMeno)->fetchAll();
@@ -85,7 +85,39 @@ final class UserPresenter extends Nette\Application\UI\Presenter
     }
 
     public function register() {
+        $res = $this->allowCors();
+        $req = $this->getHttpRequest();
+        
+        if($req->getMethod() == 'POST') {
+            //rozbali poziadavku
+            $body = Json::decode($req->getRawBody());
 
+            //vytvori sa novy objekt
+            $object = new stdClass();
+            $object->err = "";
+            $object->status = false;
+            
+            // TODO osetrit heslo
+            $hashedHeslo = md5($body->heslo. + '');
+
+            // vykona query
+            $data = $this->database->query("SELECT user, heslo FROM pouzivatelia WHERE user = ? ", $body->userMeno)->fetchAll();
+            $data = $this->database->query("SELECT user, heslo FROM pouzivatelia WHERE user = ? ", $body->userMeno)->fetchAll();
+
+            // ak sa vrati neprazdna tak posli spravu uspesnu registraciu 
+            if (count($data) === 0) {
+                $data = $this->database->query(" ", $body->userMeno)->fetchAll();
+                
+
+            } else {
+               
+            }
+
+            $this->sendJson($object);
+
+        } else {
+            $this->sendJson(null);
+        }  
     }
 
     public function delete() {

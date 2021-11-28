@@ -32,5 +32,17 @@ export class FilmyComponent implements OnInit {
       id:this.user.id
     });
 
+/*
+    this.http.post("http://localhost/semka/api/www/home/dom/", {
+      meno:this.user.meno, 
+      id:this.user.id
+    }).subscribe(
+      result=>{
+        console.log(result);
+      },
+      error=>{}
+    );
+*/
+
   }
 }

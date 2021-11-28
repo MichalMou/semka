@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   register(): void {
     if(this.reHeslo == this.heslo) {
       const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-      this.http.post(environment.url + "/user/login", {
+      this.http.post(environment.url + "/user/register", {
       userMeno:this.userMeno, 
       heslo:this.heslo
       },{headers}).subscribe(response=>{
