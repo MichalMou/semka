@@ -8,12 +8,11 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private user: UserDataService) { }
+  constructor(public user: UserDataService) { }
 
   ngOnInit(): void {
+    // zavolat user/load
+    //this.user.
   }
 
-  increaseId(): void {
-    this.user.set(this.user.id + 1);
-  }
 }

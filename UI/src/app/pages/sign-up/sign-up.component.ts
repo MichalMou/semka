@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { RequestService } from 'src/app/services/request.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,12 +11,12 @@ import { environment } from 'src/environments/environment';
 })
 export class SignUpComponent implements OnInit {
 
-  public userMeno = "";
-  public heslo = "";
-  public reHeslo = "";
+  public userName = "";
+  public pswd = "";
+  public rePswd = "";
   public email = "";
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : RequestService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,18 +24,35 @@ export class SignUpComponent implements OnInit {
   // TODO post zmenit na register
 
   register(): void {
-    if(this.reHeslo == this.heslo) {
-      const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
-      this.http.post(environment.url + "/user/register", {
-      userMeno:this.userMeno, 
-      heslo:this.heslo
-      },{headers}).subscribe(response=>{
-        console.log(response);
-      });
+    //kontrola pswd
+    if (this.userName == "" || this.email == "" || this.pswd == "") {
+      this.toastr.error("Prosím vyplnte údaje.");
     } else {
-      //TODO vypis meno a heslo sa neyhoduju
+      if(this.pswd != this.rePswd) {
+        this.toastr.error("Hesla sa nezhoduju!");
+      } else {
+        if (this.validateEmail())
+        {
+          this.http.post("/user/register", {
+            userName:this.userName, 
+            pswd:this.pswd,
+            email:this.email
+            }).subscribe(response=>{
+              this.toastr.error(response.message);
+            });
+        }
+      }
     }
-   
+  }
+  
+  // podmienka na validovane emailu
+  validateEmail(): boolean {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))
+    {
+      return (true)
+    }
+      this.toastr.error("Prosím zadajte platny email.", "Zadaný email nemá platnu formu, nemôže obsahovat ! # $ % & ' * + - / = ? ^ _ ` { | } ~");
+      return (false)
   }
 
 }

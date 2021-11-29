@@ -1,14 +1,26 @@
-<div class="text-center login">
+<div class="text-center container">
     <h1>Login</h1>
-    <div class="">
-        <label for="usermeno"><b>Meno</b></label>
-        <input type="text" placeholder="Zadaj meno" name="usermeno" [(ngModel)]="userMeno" required >
+    <div class="col-24">
+        <div>
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label for="userName"><b>Meno</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userName" required >  
+            </div>
+        </div>
+
+        <div>
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label for="pswd"><b>Heslo</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="pswd" required>    
+            </div>
+        </div>
     </div>
+    
     <div class="">
-        <label for="heslo"><b>Heslo</b></label>
-        <input type="password" placeholder="Zadaj heslo" name="heslo" [(ngModel)]="heslo" required>    
-    </div>
-    <div class="">
-        <button (click)="submit()" >Prihlasit</button>
+        <button (click)="login()" >Prihlasit</button>
     </div>
 </div>

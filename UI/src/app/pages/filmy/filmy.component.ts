@@ -15,7 +15,7 @@ export class FilmyComponent implements OnInit {
   constructor(private route : ActivatedRoute, public user : UserDataService, private http : HttpClient) { }
 
   ngOnInit(): void {
-    console.log(this.user.meno);
+    console.log(this.user.name);
     this.nazov = this.route.snapshot.paramMap.get('nazov');
   }
 
@@ -28,21 +28,8 @@ export class FilmyComponent implements OnInit {
     );
 
     this.http.post("http://localhost/semka/api/www/home/dom/", {
-      meno:this.user.meno, 
-      id:this.user.id
+      meno:this.user.name, 
     });
-
-/*
-    this.http.post("http://localhost/semka/api/www/home/dom/", {
-      meno:this.user.meno, 
-      id:this.user.id
-    }).subscribe(
-      result=>{
-        console.log(result);
-      },
-      error=>{}
-    );
-*/
 
   }
 }

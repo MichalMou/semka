@@ -1,17 +1,44 @@
-<div class="text-center register box">
+<div class="text-center container">
     <h1>Registrácia</h1>
+    <!-- TODO prerobit na responzivne podla login -->
+    <div class="col-24">
+        <div>
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="userName"><b>Meno</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userName" required >
+            </div>
+        </div>
 
-        <label for="usermeno"><b>Meno</b></label>
-        <input type="text" placeholder="Zadaj meno" name="usermeno" [(ngModel)]="userMeno" required >
-    
-        <label for="heslo"><b>Heslo</b></label>
-        <input type="password" placeholder="Zadaj heslo" name="heslo" [(ngModel)]="heslo" required>    
-    
-        <label for="reHeslo"><b>Zopakované heslo</b></label>
-        <input type="password" placeholder="Zadaj znovu heslo" name="reHeslo" [(ngModel)]="reHeslo" required >
-    
-        <label for="email"><b>Meno</b></label>
-        <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="email" required >    
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="pswd"><b>Heslo</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="pswd" required>    
+            </div>
+        </div>
 
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="rePswd"><b>Zopakuj heslo</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="password" placeholder="Zadaj znovu heslo" name="rePswd" [(ngModel)]="rePswd" required >
+            </div>
+        </div>
+
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="email"><b>Email</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="email" required >    
+            </div>
+        </div>
+    </div>
+    <div>
         <button (click)="register()" >Registruj</button>
+    </div>
 </div>

@@ -15,21 +15,29 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         $this->database = $database;
     }
 
+    // TODO urobit nacitanie news 
+
+    // TODO loadNews
+
+    // TODO addNews
+
+    // TODO deleteNews
+
+    // TODO editNews
+
+    //test
     public function actionTest(){
         $object = new stdClass();
-        $object->sprava = "halo halo";
+        $object->message = "halo halo";
         $this->sendJson($object);
     }
 
+    //test
     public function actionDom($key){
         $object = new stdClass();
         $object->key = $key;
         $object->sprava = "halo halo";
 
         $this->sendJson($object);
-    }
-
-    public function actionLogin() {
-        
     }
 }

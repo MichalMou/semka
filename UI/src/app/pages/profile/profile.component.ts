@@ -1,42 +1,45 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   public userName = "";
+  public userNewName = "";
   public pswd = "";
+  public newPswd = "";
+  public newEmail = "";
 
   constructor(private http : RequestService, private user : UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
 
-  login(): void {
+// TODO urobit route do profile
+
+  edit(): void {
     this.http.post("/user/login", {
     userName:this.userName, 
-    pswd:this.pswd
+    userNewName:this.userNewName,
+    newPswd:this.pswd,
+    newEmail:this.newEmail
     }).subscribe(response=>{
       if(response.status) {
         // nastavim session id pri uspesnom prihlaseni
         this.user.setSessionId(response.sid);
-        this.toastr.error(response.message);
-        this.user.setlogedIn(response.status);
-        this.user.setName(this.userName);
-        this.user.setEmail(response.email);
-
+        
       } else {
-        // neuspesne prihlasenie
+        // TODO neuspesne prihlasenie
         this.toastr.error(response.message);
       }
+      // test
+      console.log(response);
     });
     // TODO podla response vypisat error alebo zapisat niektde udaje 
   }
