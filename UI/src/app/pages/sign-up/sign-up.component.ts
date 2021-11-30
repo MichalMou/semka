@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,8 +16,9 @@ export class SignUpComponent implements OnInit {
   public pswd = "";
   public rePswd = "";
   public email = "";
+  public registered = false;
 
-  constructor(private http : RequestService, private toastr : ToastrService) { }
+  constructor(private http : RequestService, private toastr : ToastrService, private user : UserDataService) { }
 
   ngOnInit(): void {
   }
@@ -39,12 +41,19 @@ export class SignUpComponent implements OnInit {
             email:this.email
             }).subscribe(response=>{
               this.toastr.error(response.message);
+              if(response.status) {
+                this.registered = true;
+              }
             });
         }
       }
     }
   }
   
+  newReg(): void {
+    this.registered = false;
+  }
+
   // podmienka na validovane emailu
   validateEmail(): boolean {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))

@@ -10,38 +10,77 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public userName = "";
   public userNewName = "";
-  public pswd = "";
   public newPswd = "";
   public newEmail = "";
+  public userName = this.user.getName();
+  public email = this.user.getEmail();
 
-  constructor(private http : RequestService, private user : UserDataService, private toastr : ToastrService) { }
+  constructor(private http : RequestService, public user : UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
 
-// TODO urobit route do profile
-
   edit(): void {
-    this.http.post("/user/login", {
-    userName:this.userName, 
-    userNewName:this.userNewName,
-    newPswd:this.pswd,
-    newEmail:this.newEmail
-    }).subscribe(response=>{
-      if(response.status) {
-        // nastavim session id pri uspesnom prihlaseni
-        this.user.setSessionId(response.sid);
+    if (this.userName == "" || this.email == "" || this.newPswd == "") {
+      this.toastr.error("Prosím vyplnte údaje.");
+    } else {
+      if (this.validateEmail()){
         
-      } else {
-        // TODO neuspesne prihlasenie
-        this.toastr.error(response.message);
+        this.http.post("/user/edit", {
+          userName:this.user.getName(), 
+          userNewName:this.userNewName,
+          newPswd:this.newPswd,
+          email:this.user.getEmail(),
+          newEmail:this.newEmail
+        }).subscribe(response=>{
+
+          if(response.status) {
+            // uspesna zmena udajov
+            this.toastr.error(response.message);  
+            // TODO zmenit udaje user
+            this.user.setName(this.userNewName);
+            this.user.setEmail(this.newEmail);
+            this.userName = this.userNewName;
+            this.email = this.newEmail;
+          } else {
+            // neuspesna zmena udajov
+            this.toastr.error(response.message);
+          }
+        });
       }
-      // test
-      console.log(response);
-    });
-    // TODO podla response vypisat error alebo zapisat niektde udaje 
+      
+    }
+
   }
+
+  delete(): void{
+    this.http.post("/user/delete", {
+      userName:this.user.getName(), 
+      email:this.user.getEmail()
+      }).subscribe(response=>{
+        if(response.status) {
+          // uspesne zmazany acc
+          this.toastr.error(response.message);  
+          // TODO zmenit udaje user
+          this.user.setName("guest");
+          this.user.setEmail("");
+
+        } else {
+          // neuspesna zmena udajov
+          this.toastr.error(response.message);
+        }
+      });
+
+  }
+
+  validateEmail(): boolean {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.newEmail))
+      {
+        return (true)
+      }
+        this.toastr.error("Prosím zadajte platny email.", "Zadaný email nemá platnu formu, nemôže obsahovat ! # $ % & ' * + - / = ? ^ _ ` { | } ~");
+        return (false)
+    }
 
 }

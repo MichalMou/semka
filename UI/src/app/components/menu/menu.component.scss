@@ -8,15 +8,20 @@ a {
     font-size: 24px;
 } 
 
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    color: black;
+#logedin {
+    margin-left: 40px;
 }
 
 a:hover {
     opacity: 0.80;
     background-color: gray;
 }
+
+button {
+    background-color: rgb(0, 255, 255);
+    border-radius: 10px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+  }

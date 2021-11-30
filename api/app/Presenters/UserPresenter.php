@@ -60,7 +60,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $object->status = false;
             
             // TODO osetrit heslo
-            $hashedPswd = md5($body->pswd);
+            $hashedPswd = md5($body->pswd.$body->userName);
 
             // vykona query
             $data = $this->database->query("SELECT * FROM pouzivatelia WHERE user = ? ", $body->userName);
@@ -135,7 +135,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             
             // osetrit heslo
             // TODO pridat salt
-            $hashedPswd = md5($body->pswd);
+            $hashedPswd = md5($body->pswd.$body->userName);
 
             // pridat adminovi prava
             $rights = 0;
@@ -177,7 +177,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    public function delete() {
+    public function actionDelete() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -217,7 +217,7 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    public function edit() {
+    public function actionEdit() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -247,31 +247,12 @@ final class UserPresenter extends Nette\Application\UI\Presenter
 
             } else {
                 // priprava udajov na update
-                $newPswd = "";
-                $newName = "";
-                $newEmail = "";
-
-                if($body->newPswd == "") {
-                    $newPswd = ($body->newPswd);
-                } else {
-                    $newPswd = $queryResult->pswd;
-                }
-
-                if($body->newName == "") {
-                    $newName = ($body->newUserName);
-                } else {
-                    $newName = $queryResult->user;
-                }
-
-                if($body->newEmail == "") {
-                    $newEmail = ($body->newEmail);
-                } else {
-                    $newEmail = $queryResult->email;
-                }
+                $newPswd = md5($body->newPswd.$body->userNewName);
 
                 // zmena udajov v DB
-                $data_check = $this->database->query("UPDATE pouzivatelia SET user", ['user' => $newName, 'pswd' => $newPswd, 'mail' => $newEmail] ,"WHERE user = ?", $body->userName);
+                $data_check = $this->database->query("UPDATE pouzivatelia SET user = ?, heslo = ?, mail = ? WHERE user = ?", $body->userNewName, $newPswd, $body->newEmail, $body->userName);
                
+
                 // test uspesnosti 
                 if($data_check->getRowCount() == 1) {
                     $object->status = true;   

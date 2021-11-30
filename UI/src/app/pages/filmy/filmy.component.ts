@@ -9,7 +9,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./filmy.component.scss']
 })
 export class FilmyComponent implements OnInit {
-
+// test
   nazov:string | null = "neviem uz";
 
   constructor(private route : ActivatedRoute, public user : UserDataService, private http : HttpClient) { }

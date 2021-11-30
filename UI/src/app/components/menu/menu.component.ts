@@ -15,4 +15,10 @@ export class MenuComponent implements OnInit {
     //this.user.
   }
 
+  logout(): void {
+    this.user.setName("guest");
+    this.user.setEmail("");
+    this.user.setlogedIn(false);
+  }
+
 }

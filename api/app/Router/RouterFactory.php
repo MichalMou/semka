@@ -21,7 +21,8 @@ final class RouterFactory
 		$router->addRoute('user/login','User:login');
 		$router->addRoute('user/register','User:register');
 		$router->addRoute('user/load','User:load');
-		$router->addRoute('user/profile','User:edit');
+		$router->addRoute('user/edit','User:edit');
+		$router->addRoute('user/delete','User:delete');
 		return $router;
 	}
 }

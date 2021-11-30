@@ -1,1 +1,63 @@
-<p>profile works!</p>
+<div *ngIf="user.logedIn" class="text-center container">
+    <h1>Profil</h1>
+    <div class="col-24">
+        <div>
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="userName"><b>Meno:  </b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <label class="col-10" for="email"><b>{{userName}}</b></label>
+            </div>
+        </div>
+
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="email"><b>Email:  </b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <label class="col-10" for="email"><b>{{email}}</b></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="user.logedIn" class="text-center container">
+    <div>
+        <h1>Zmeniť údaje</h1>
+        <div>
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="userName"><b>Nové meno</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userNewName" required >
+            </div>
+        </div>
+
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="pswd"><b>Nové heslo</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="newPswd" required>    
+            </div>
+        </div>
+
+        <div class="col-24">
+            <div class="col-24 col-md-11 text-center text-md-right">
+                <label class="col-10" for="email"><b>Nový email</b></label>
+            </div>
+            <div class="col-24 col-md-13 text-center text-md-left">
+                <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="newEmail" required >    
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button (click)="edit()" >Zmeniť údaje</button>
+    </div>
+
+</div>
+
+<div *ngIf="!user.logedIn" class="text-center container">
+    <h1>Nie ste prihlasený.</h1>
+</div>

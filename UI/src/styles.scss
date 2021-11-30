@@ -9,3 +9,30 @@ body {
     margin: 0px;
     background: #CCCCCC;
 }
+
+input {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+  
+  
+button:hover {
+    opacity: 0.8;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+
+.container {
+    margin-top: 10%;
+    background: gray;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public userName = "";
   public pswd = "";
 
-  constructor(private http : RequestService, private user : UserDataService, private toastr : ToastrService) { }
+  constructor(private http : RequestService, public user : UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -32,13 +32,13 @@ export class LoginComponent implements OnInit {
         this.user.setlogedIn(response.status);
         this.user.setName(this.userName);
         this.user.setEmail(response.email);
-
+        console.log(response.email)
+        console.log(this.user.getEmail());
       } else {
         // neuspesne prihlasenie
         this.toastr.error(response.message);
       }
     });
-    // TODO podla response vypisat error alebo zapisat niektde udaje 
   }
 
 }

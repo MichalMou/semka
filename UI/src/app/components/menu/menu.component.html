@@ -4,14 +4,7 @@
     <a routerLink = "/serialy" >Serialy</a>
     <a *ngIf="!user.logedIn" routerLink = "/sign-up" >Sign Up</a>
     <a *ngIf="!user.logedIn" routerLink = "/login" >Login</a>
-    <!--
-        vytvorit stranku na zmenu udajov a zmazanie acc
-    <a *ngIf="user.prihlaseny" routerLink = "/login" >Login</a>
-
-    upravit styl p na a aby boli rovnake
-    -->
-    <!-- <a (click) = "increaseId()" >Login</a> -->
-    <a *ngIf="user.logedIn">prihlásený</a>
-    <button *ngIf="user.logedIn">odhlásit</button>
-    
+    <a *ngIf="user.logedIn" id="logedin">Prihlásený</a>
+    <a *ngIf="user.logedIn" routerLink = "/profil">Profil</a>
+    <button (click) = "logout()" *ngIf="user.logedIn">Odhlásit</button>
 </div>

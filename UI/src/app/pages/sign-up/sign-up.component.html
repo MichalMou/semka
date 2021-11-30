@@ -1,6 +1,5 @@
-<div class="text-center container">
+<div *ngIf="!registered" class="text-center container">
     <h1>Registrácia</h1>
-    <!-- TODO prerobit na responzivne podla login -->
     <div class="col-24">
         <div>
             <div class="col-24 col-md-11 text-center text-md-right">
@@ -41,4 +40,12 @@
     <div>
         <button (click)="register()" >Registruj</button>
     </div>
+</div>
+
+<div *ngIf="registered" class="text-center container">
+    <h1>Úspešne ste sa registroval. </h1>
+    <div>
+        <button (click)="newReg()" >Nová registrácia</button>
+    </div>
+
 </div>

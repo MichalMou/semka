@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { error } from 'console';
+//import { error } from 'console'; 
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -7,10 +7,10 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class UserDataService {
 
-  private name = "guest";
-  private logedIn = false;
-  private rights = 0;
-  private email = "";
+  public name = "guest";
+  public logedIn = false;
+  public rights = 0;
+  public email = "";
 
   constructor(private cookies : CookieService) {}
 
@@ -39,7 +39,7 @@ export class UserDataService {
 
 
   setEmail(email:string): void {
-    this.email = this.email;
+    this.email = email;
   }
   getEmail(): string {
     return this.email;

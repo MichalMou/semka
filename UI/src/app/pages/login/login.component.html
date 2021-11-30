@@ -1,4 +1,4 @@
-<div class="text-center container">
+<div *ngIf="!user.logedIn" class="text-center container">
     <h1>Login</h1>
     <div class="col-24">
         <div>
@@ -23,4 +23,8 @@
     <div class="">
         <button (click)="login()" >Prihlasit</button>
     </div>
+</div>
+
+<div *ngIf="user.logedIn" class="text-center container">
+    <h1>Úspešne ste sa prihlasili. </h1>
 </div>
