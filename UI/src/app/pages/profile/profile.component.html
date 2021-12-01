@@ -58,6 +58,17 @@
 
 </div>
 
+<div *ngIf="user.logedIn" class="text-center container">
+    <div>
+        <h1>Vymazať účet</h1>
+    </div>
+    <div>
+        <button (click)="delete()">Vymazať účet</button>
+    </div>
+
+</div>
+
+
 <div *ngIf="!user.logedIn" class="text-center container">
     <h1>Nie ste prihlasený.</h1>
 </div>

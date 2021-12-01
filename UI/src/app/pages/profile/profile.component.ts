@@ -62,10 +62,12 @@ export class ProfileComponent implements OnInit {
         if(response.status) {
           // uspesne zmazany acc
           this.toastr.error(response.message);  
-          // TODO zmenit udaje user
+          // zmenit udaje user
           this.user.setName("guest");
           this.user.setEmail("");
+          this.user.setlogedIn(false);
 
+          // TODO admin prava pre ostatne DB
         } else {
           // neuspesna zmena udajov
           this.toastr.error(response.message);
