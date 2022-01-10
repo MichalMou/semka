@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
             pswd:this.pswd,
             email:this.email
             }).subscribe(response=>{
-              this.toastr.error(response.message);
+              this.toastr.error(response.message); 
               if(response.status) {
                 this.registered = true;
               }
