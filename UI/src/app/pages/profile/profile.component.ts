@@ -67,7 +67,6 @@ export class ProfileComponent implements OnInit {
           this.user.setEmail("");
           this.user.setlogedIn(false);
 
-          // TODO admin prava pre ostatne DB
         } else {
           // neuspesna zmena udajov
           this.toastr.error(response.message);

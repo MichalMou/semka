@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
         this.user.setlogedIn(response.status);
         this.user.setName(this.userName);
         this.user.setEmail(response.email);
-        console.log(response.email)
-        console.log(this.user.getEmail());
       } else {
         // neuspesne prihlasenie
         this.toastr.error(response.message);

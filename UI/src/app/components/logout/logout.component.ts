@@ -13,10 +13,4 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  logout(): void {
-    this.user.setName("guest");
-    this.user.setEmail("");
-    this.user.setlogedIn(false);
-  }
-
 }

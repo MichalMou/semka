@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { faBars, faHamburger, faSignal, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
@@ -8,17 +9,25 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class MenuComponent implements OnInit {
 
+  public faIconBurger = faHamburger;
+  public faIconSignIn = faSignInAlt;
+  public faIconSignOut =faSignOutAlt;
+  public open = false;
+  public responsive = false;
+
   constructor(public user: UserDataService) { }
 
   ngOnInit(): void {
-    // zavolat user/load
-    //this.user.
+   this.user.load();
   }
 
-  logout(): void {
-    this.user.setName("guest");
-    this.user.setEmail("");
-    this.user.setlogedIn(false);
+  openList(): void {
+    this.open = true;
   }
+  
+  logout(): void {
+    this.user.logout();
+  }
+
 
 }

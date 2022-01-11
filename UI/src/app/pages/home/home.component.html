@@ -1,1 +1,20 @@
 <p>home works!</p>
+<input type="file" (change)="onChange($event)">
+
+<button (click)="saveImg()">save</button>
+
+<img *ngIf="imgNews" [src]="imgNews" >
+
+
+<button (click)="loadImg()">load</button>
+
+
+
+<div class="news" *ngFor="let item of news"> 
+    <h1>{{item.titul}}</h1>
+    <p>{{item.text}}</p>
+    <img [src]="item.img" >
+    
+</div>
+
+<app-news *ngFor="let item of news" [data]="item"></app-news>

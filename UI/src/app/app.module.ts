@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NewsComponent } from './components/news/news.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     SignUpComponent,
     InfoComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

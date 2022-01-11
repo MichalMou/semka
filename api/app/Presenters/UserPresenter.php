@@ -100,20 +100,19 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
-        if($req->getMethod() == 'POST') {
+        if($req->getMethod() == 'GET') {
             //rozbali poziadavku
-            $body = Json::decode($req->getRawBody());
-
+           
             //vytvori sa novy objekt
             $object = new stdClass();
-            $object->status = false;
+            $object->status = true;
             
             // nette ma session rozdelenu do sekcii
             $sekcia = $this->session->getSection("user");
                     
             // ukladam si param aby som vedel kto je prihlaseny
-            $sekcia["userName"] = "";
-
+            //$sekcia["userName"] = "";
+            unset($sekcia["userName"]);
             $this->sendJson($object);
 
         } else {
@@ -229,8 +228,6 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $object = new stdClass();
             $object->status = false;
             
-            // TODO kontrola kto je prihlaseny
-
             // zisti sa ci je meno alebo mail obsadeny
             $data = $this->database->query("SELECT * FROM pouzivatelia WHERE user = ? OR mail = ? ", $body->userNewName, $body->newEmail);
             $queryResult = $data->fetch();  
@@ -252,7 +249,6 @@ final class UserPresenter extends Nette\Application\UI\Presenter
                 // zmena udajov v DB
                 $data_check = $this->database->query("UPDATE pouzivatelia SET user = ?, heslo = ?, mail = ? WHERE user = ?", $body->userNewName, $newPswd, $body->newEmail, $body->userName);
                
-
                 // test uspesnosti 
                 if($data_check->getRowCount() == 1) {
                     $object->status = true;   
@@ -267,25 +263,27 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    // (pri refreshi sa angular resetuje cize data sa zmazu a musim nacitat znova)
+    // (pri refreshi sa angular resetuje cize data user sa zmazu a musim nacitat znova)
     public function actionLoad() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
-        if($req->getMethod() == 'POST') {
+        if($req->getMethod() == 'GET') {
             $object = new stdClass();
-        
-
+            $object->status = false;
             $sekcia = $this->session->getSection("user");
-            
+                        
             if(isset($this->session)) {
-                $userName = $sekcia["userName"];
-                if($userName != "") {
+                if(isset($sekcia["userName"])) {
+                    $userName = $sekcia["userName"];
                     $object->userName = $userName;
                     $data = $this->database->query("SELECT * FROM pouzivatelia WHERE user = ? ", $userName);
                     $resultQuery = $data->fetch();
-                    $object->email =  $resultQuery->mail;
-                    $object->prava =  $resultQuery->prava;
+                    if($resultQuery != null) {
+                        $object->email =  $resultQuery->mail;
+                        $object->rights =  $resultQuery->prava;
+                        $object->status = true;
+                    } 
                 }
             }
             $this->sendJson($object);

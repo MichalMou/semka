@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { error } from 'console'; 
 import { CookieService } from 'ngx-cookie-service';
+import { RequestService } from './request.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserDataService {
   public rights = 0;
   public email = "";
 
-  constructor(private cookies : CookieService) {}
+  constructor(private cookies : CookieService, private req : RequestService) {}
 
   setlogedIn(login:boolean): void {
     this.logedIn = login;
@@ -51,5 +52,33 @@ export class UserDataService {
   }
   getName(): string {
     return this.name;
+  }
+
+  load(): void {
+    this.req.get("/user/load")
+    .subscribe(response=>{
+        console.log(response);
+        if (response.status === true) {
+          this.email = response.email;
+          this.rights = response.rights;
+          this.name = response.userName;
+          this.logedIn = true;
+        }
+      }
+    );
+  }
+
+  logout() {
+    console.log("halo");
+    this.setName("guest");
+    this.setEmail("");
+    this.setlogedIn(false)
+
+    this.req.get("/user/logout")
+    .subscribe(response=>{
+        console.log(response);
+      }
+    );
+
   }
 }

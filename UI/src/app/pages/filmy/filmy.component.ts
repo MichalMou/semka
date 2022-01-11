@@ -32,4 +32,11 @@ export class FilmyComponent implements OnInit {
     });
 
   }
+
+  loadReviews() : void {
+
+    
+  }
+
+
 }
