@@ -1,31 +1,38 @@
 <nav class="col-24 menu font-top">
-    <div class="d-md-none col-md-20">
-        <fa-icon id="hamburger" [icon]="faIconBurger"></fa-icon>
+    <div class=" col-5">
+        <a class="logo" href="/home">FILMOTÉKA</a>
     </div>
-    <div class="col-md-20 d-none">
+
+    <div (click)= "show()" class="d-md-none col-19 text-right bars">
+        <fa-icon class="logo" [icon]="faIconBars"></fa-icon>
+    </div>
+    <div *ngIf="showMenu || winWidth >= 768" class="col-23 col-md-19">
         <ul>
             <li>
-                <a routerLink= "/home" >Domov</a>
+                <a class="" routerLink= "/home" >DOMOV</a>
             </li>  
+            <li>
+                <a routerLink= "/filmy">RECENZIE</a>
+            </li>
+
             <li>
                 <app-search></app-search>
             </li> 
-            <li>
-                <a routerLink= "/filmy">Recenzie</a>
+   
+            <li *ngIf="!user.logedIn">
+                <a routerLink = "/sign-up" >REGISTRÁCIA</a>
             </li>
             <li *ngIf="!user.logedIn">
-                <a routerLink = "/sign-up" >
+                <a routerLink = "/login" >
                     <fa-icon id="sign-in" [icon]="faIconSignIn"></fa-icon>
                 </a>
             </li>
-            <li *ngIf="!user.logedIn">
-                <a routerLink = "/login" >Login</a>
-            </li>
+                           
             <li *ngIf="user.logedIn">
-                <a id="logedin" >Prihlásený</a>
+                <a id="logedin" >PRIHLASENÝ</a>
             </li>
             <li *ngIf="user.logedIn" >
-                <a routerLink = "/profil">Profil</a>
+                <a routerLink = "/profil">PROFIL</a>
             </li>
             <li *ngIf="user.logedIn">
                 <a (click)= "logout()">

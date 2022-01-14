@@ -1,81 +1,9 @@
-// #logedin {
-//     margin-left: 40px;
-// }
-
-// button {
-//     background-color: rgb(0, 255, 255);
-//     border-radius: 10px;
-//     color: black;
-//     border: none;
-//     cursor: pointer;
-//     font-size: 24px;
-//   }
-// /*
-// .nav-menu {
-//     //overflow: hidden;
-// }
-// */
-// .nav-menu a {
-//     float: left;
-//     display: block;
-//     padding: 13px 8px;
-//     color: black;
-//     text-align: center;
-//     text-decoration: none;
-//     font-size: 24px;
-// }
-
-// // TODO upravit farby
-// .nav-menu a:hover {
-//     background-color: #FFFFFF;
-//     color: black;
-// }
-  
-// .nav-menu a.active {
-//     background-color: #04AA6D;
-//     color: white;
-// }
-  
-// .nav-menu .icon {
-//     display: none;
-// }
-
-
-// @media screen and (max-width: 600px) {
-//     // TODO upravit podmienku na velkosti aby bola rovnaka ako ostatne casti webu
-//     .topnav a.fa-icon {display: none;}
-//     .topnav a {
-//       float: right;
-//       display: block;
-//     }
-
-//     // TODO pridat podmienku na to aby sa zobrazovali pri hover 
-//     /*
-//     .topnav.responsive {position: relative;}
-//     .topnav.responsive .fa-icon {
-//       position: absolute;
-//       right: 0;
-//       top: 0;
-//     }
-//     .topnav.responsive a {
-//       float: none;
-//       display: block;
-//       text-align: left;
-//     }
-
-//     */
-    
-
-// }
-
 .menu {
-    background-color: #1b1b1b;
-    //border-bottom: 1px solid;
+    background-color: #0082e6;
+    border-bottom: 1px solid;
     color: white;
     box-shadow: 0px 2px 15px #c5c5c5;
 }
-
-
 
 ul {
     list-style-type: none;
@@ -88,36 +16,44 @@ a {
     font-size: 24px;
 }
     
-a:hover {
-    background-color: #222222;
+nav ul li:hover, .logo:hover{
+    background: #68ace0;
+    transition: all 0.3s ease;
     color: white;
-}
-nav:after {
-    content: '';
-    clear: both;
-    display: table;
 }
 
 nav ul {
     float: right;
-    margin-right: 40px;
     position: relative;
+    margin: 0px;
 }
+
 nav ul li {
     display: inline-block;
-    background-color: black;
-    margin: 0 5px;
+    background-color: #0082e6;
 }
 
-nav ul li a {
-    color: white;
-    line-height: 70px;
-    padding: 8px 15px;
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        text-align: right;
+    }
 }
 
-button {
-    background: black;
+nav ul li, .logo{
+    border-radius: 25px;
     color: white;
     line-height: 70px;
-    padding: 8px 15px;
+    padding: 0px 10px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.bars {
+    font-size: 40px;
 }

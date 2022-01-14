@@ -1,16 +1,21 @@
-// button {
-//     background: #CCCCCC;
-//     border: none;
-//     cursor: pointer; 
-//     font-size: 24px;
-// }
+button {
+    background:#0185EA;
+    border: none;
+    cursor: pointer; 
+    font-size: 24px;
+    border-radius: 25px;
+}
 
-// button:hover {
-//     background: gray;
-// }
+input {
+    background: #9cc8e9;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    box-shadow: none;
+    cursor: pointer; 
+    font-size: 24px;
+}
 
-// input {
-//     border: none;
-//     cursor: pointer; 
-//     font-size: 24px;
-// }
+::placeholder {
+    color: white;
+}

@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { SearchComponent } from './components/search/search.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { TitleComponent } from './components/title/title.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContentBarComponent } from './components/content-bar/content-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -30,8 +28,6 @@ import { NewsComponent } from './components/news/news.component';
     AppComponent,
     MenuBarComponent,
     SearchComponent,
-    MenuComponent,
-    TitleComponent,
     ContentBarComponent,
     FooterComponent,
     HomeComponent,
