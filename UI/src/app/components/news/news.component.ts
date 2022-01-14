@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -15,7 +15,7 @@ export class NewsComponent implements OnInit {
   public img : any;
   public titul : any;
   public faDelete = faTrashAlt;
-
+  public faEdit = faEdit;
 
   @Input() data ? : any;
 
@@ -27,6 +27,14 @@ export class NewsComponent implements OnInit {
 
   deleteNews(): void {
     this.http.post("/homepage/deleteNews", {
+      UID:this.data.UID
+      }).subscribe(response=>{
+        this.toastr.error("Úspešne uložené");
+      });
+  }
+
+  editNews(): void {
+    this.http.post("/homepage/editNews", {
       UID:this.data.UID
       }).subscribe(response=>{
         this.toastr.error("Úspešne uložené");

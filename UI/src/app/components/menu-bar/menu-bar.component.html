@@ -1,10 +1,38 @@
-<div class="col-24 menu-bar">
-    <div class="col-20 col-md-8">
-        <app-title></app-title>
+<nav class="col-24 menu font-top">
+    <div class="d-md-none col-md-20">
+        <fa-icon id="hamburger" [icon]="faIconBurger"></fa-icon>
     </div>
-    <div class="col-16 text-right">
-        <app-search></app-search>
-        <app-menu></app-menu>
+    <div class="col-md-20 d-none">
+        <ul>
+            <li>
+                <a routerLink= "/home" >Domov</a>
+            </li>  
+            <li>
+                <app-search></app-search>
+            </li> 
+            <li>
+                <a routerLink= "/filmy">Recenzie</a>
+            </li>
+            <li *ngIf="!user.logedIn">
+                <a routerLink = "/sign-up" >
+                    <fa-icon id="sign-in" [icon]="faIconSignIn"></fa-icon>
+                </a>
+            </li>
+            <li *ngIf="!user.logedIn">
+                <a routerLink = "/login" >Login</a>
+            </li>
+            <li *ngIf="user.logedIn">
+                <a id="logedin" >Prihlásený</a>
+            </li>
+            <li *ngIf="user.logedIn" >
+                <a routerLink = "/profil">Profil</a>
+            </li>
+            <li *ngIf="user.logedIn">
+                <a (click)= "logout()">
+                    <fa-icon id="sign-out" [icon]="faIconSignOut"></fa-icon>
+                </a>
+            </li>
+
+        </ul>
     </div>
-    
-</div>
+</nav>
