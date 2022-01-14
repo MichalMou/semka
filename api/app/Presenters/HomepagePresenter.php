@@ -33,10 +33,10 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         return $res;
     }
    
-    public function actionSaveImg() {
+    public function actionSaveNews() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
-        
+                
         if($req->getMethod() == 'POST') {
             //rozbali poziadavku
             $body = Json::decode($req->getRawBody());
@@ -44,11 +44,8 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
-            //$object->img = $body->img;
 
-            // TODO zmenit param insertu na veci z body
-
-            $this->database->query("INSERT INTO novinky(titul,text) VALUES(?, ?)","halo", "blabla");
+            $this->database->query("INSERT INTO novinky(titul,text) VALUES(?, ?)", $body->title, $body->text);
             $lastId = $this->database->getInsertId();
             $object->Id = $lastId;
             FileSystem::write("newsImg/obr". $lastId .".dat", $body->img);
@@ -59,7 +56,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    public function actionLoadImg() {
+    public function actionLoadNews() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -87,13 +84,29 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    // TODO loadNews
-  
+    public function actionDeleteNews() {
+        $res = $this->allowCors();
+        $req = $this->getHttpRequest();
+        
+        if($req->getMethod() == 'POST') {
+            $body = Json::decode($req->getRawBody());
 
-    // TODO loadItem
+            $object = new stdClass();
+            $object->status = false;
 
-    // TODO addNews
+            $data = $this->database->query("DELETE FROM novinky WHERE UID = ?", $body->UID);
+            if ($data->getRowCount() > 0) {
+                $object->status = true;
+                $object->message = "Záznam úspešne vymazaný.";
+            }
 
+            $this->sendJson($object);
+        } else {
+            $this->sendJson(null);
+        }  
+    }
+
+    
     // TODO deleteNews
 
     // TODO editNews

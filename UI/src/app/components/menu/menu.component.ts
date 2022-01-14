@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { faBars, faHamburger, faSignal, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHamburger, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   public faIconBurger = faHamburger;
   public faIconSignIn = faSignInAlt;
-  public faIconSignOut =faSignOutAlt;
+  public faIconSignOut = faSignOutAlt;
   public open = false;
   public responsive = false;
 

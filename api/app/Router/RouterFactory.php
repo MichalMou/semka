@@ -17,8 +17,9 @@ final class RouterFactory
 		$router = new RouteList;
 		// $router->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default'); 
 		$router->addRoute('homepage/test', 'Homepage:test'); 
-		$router->addRoute('homepage/saveImg', 'Homepage:saveImg'); 
-		$router->addRoute('homepage/loadImg', 'Homepage:loadImg'); 
+		$router->addRoute('homepage/saveNews', 'Homepage:saveNews'); 
+		$router->addRoute('homepage/loadNews', 'Homepage:loadNews'); 
+		$router->addRoute('homepage/deleteNews', 'Homepage:deleteNews'); 
 
 		$router->addRoute('home/dom/<key>','Homepage:dom');
 		$router->addRoute('user/login','User:login');

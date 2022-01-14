@@ -1,5 +1,10 @@
 <div class="news"> 
-    <h1>{{data.titul}}</h1>
-    <p>{{data.text}}</p>
-    <img [src]="data.img" >
+    <img class="mid-box" [src]="data.img" >
+    <div class="mid-box">
+        <h1>{{data.titul}}</h1>
+        <p>{{data.text}}</p>
+    </div>
+    <button (click)= "deleteNews()">
+        <fa-icon *ngIf="user.rights > 0" id="delete-news" [icon]="faDelete"></fa-icon>
+    </button>
 </div>

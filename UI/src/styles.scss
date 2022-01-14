@@ -36,3 +36,11 @@ a:visited {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+
+.background {
+    height: 650 px;  
+    color: #fff;
+    background-image: url("../../../assets/background/background.jpg"); 
+    background-size: 100% ;  
+    background-size: cover;
+}

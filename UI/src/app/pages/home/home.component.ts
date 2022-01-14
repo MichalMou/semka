@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-home',
@@ -10,42 +12,55 @@ export class HomeComponent implements OnInit {
 
   public news : any[] = [];
   public imgNews? : any;
+  public textNews? : any;
+  public titleNews? : any;
+  
 
-  constructor(private http: RequestService) { }
+  constructor(private http: RequestService, public user: UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
+    this.loadImg();
+    this.user.load();
   }
 
   loadImg(): void {
-    this.http.get("/homepage/loadImg")
+    this.http.get("/homepage/loadNews")
     .subscribe(response=>{
-        console.log(response);
+        //console.log(response);
         this.imgNews = response.img;
-        this.news = [];
         this.news = response.news;
-        console.log(this.news);
-
+        //console.log(this.news);
     });
 
   }
 
   saveImg(): void {
-    console.log(this.imgNews);
-    this.http.post("/homepage/saveImg", {
-      img:this.imgNews
+    this.http.post("/homepage/saveNews", {
+      img:this.imgNews,
+      title:this.titleNews,
+      text:this.textNews
       }).subscribe(response=>{
-        console.log(response);
+        this.toastr.error("Úspešne uložené");
+        this.loadImg();
       });
-
-      // TODO pri ukladani 
+    
   }
 
-  // toto pri load do input
-  onChange(event : any): void {
+  changeTitle(title : any): void {
+    this.titleNews = title.value;
+  }
+
+  changeText(text : any): void {
+    this.textNews = text.value;
+  }
+
+
+  // toto pri dani obr do input
+  changeImg(event : any): void {
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
-      // convert image file to base64 string
+      // konvertuje obr do base64 string
       this.imgNews = reader.result;
     }, false);
 
@@ -53,5 +68,7 @@ export class HomeComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+  
 
 }

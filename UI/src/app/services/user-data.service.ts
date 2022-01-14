@@ -57,7 +57,6 @@ export class UserDataService {
   load(): void {
     this.req.get("/user/load")
     .subscribe(response=>{
-        console.log(response);
         if (response.status === true) {
           this.email = response.email;
           this.rights = response.rights;
@@ -69,14 +68,12 @@ export class UserDataService {
   }
 
   logout() {
-    console.log("halo");
     this.setName("guest");
     this.setEmail("");
     this.setlogedIn(false)
 
     this.req.get("/user/logout")
     .subscribe(response=>{
-        console.log(response);
       }
     );
 

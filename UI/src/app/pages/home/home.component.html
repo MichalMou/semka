@@ -1,20 +1,27 @@
-<p>home works!</p>
-<input type="file" (change)="onChange($event)">
+<div class="mid-box background">
 
-<button (click)="saveImg()">save</button>
+    <div *ngIf="user.rights > 0">
+        <form>
+            <div>
+                <label for="title">Titulka</label>
+                <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
+            </div>
+            <div>
+                <label for="text">Článok</label>
+                <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text"></textarea>
+            </div>
+            <div>
+                <label for="img">Obrázok</label>
+                <input id="img" type="file" (change)="changeImg($event)">
+            </div>
+            <button (click)="saveImg()">save</button>
+        </form>
+        
+    </div>
 
-<img *ngIf="imgNews" [src]="imgNews" >
-
-
-<button (click)="loadImg()">load</button>
-
-
-
-<div class="news" *ngFor="let item of news"> 
-    <h1>{{item.titul}}</h1>
-    <p>{{item.text}}</p>
-    <img [src]="item.img" >
-    
+    <div>
+        <img *ngIf="imgNews" [src]="imgNews" >
+        <button (click)="loadImg()">load</button>
+    </div>
+    <app-news *ngFor="let item of news" [data]="item"></app-news>
 </div>
-
-<app-news *ngFor="let item of news" [data]="item"></app-news>
