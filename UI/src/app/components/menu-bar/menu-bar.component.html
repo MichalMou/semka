@@ -3,9 +3,10 @@
         <a class="logo" href="/home">FILMOTÉKA</a>
     </div>
 
-    <div (click)= "show()" class="d-md-none col-19 text-right bars">
+    <div *ngIf="user.rights > 0" (click)= "show()" class="d-md-none col-19 text-right bars">
         <fa-icon class="logo" [icon]="faIconBars"></fa-icon>
     </div>
+
     <div *ngIf="showMenu || winWidth >= 768" class="col-23 col-md-19">
         <ul>
             <li>

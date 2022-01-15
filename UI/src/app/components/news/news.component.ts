@@ -21,6 +21,8 @@ export class NewsComponent implements OnInit {
 
   constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService) { }
 
+  public showMenu = false;
+
   ngOnInit(): void {
     this.user.load();
   }
@@ -39,6 +41,11 @@ export class NewsComponent implements OnInit {
       }).subscribe(response=>{
         this.toastr.error("Úspešne uložené");
       });
+  }
+
+  
+  showEdit(): void {
+    this.showMenu = !this.showMenu;
   }
 
 }

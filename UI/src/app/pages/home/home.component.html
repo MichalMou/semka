@@ -1,27 +1,25 @@
-<div class="mid-box">
-
-    <div *ngIf="user.rights > 0">
+<div *ngIf="user.rights > 0">
+    <div class="bd">
         <form>
             <div>
-                <label for="title">Titulka</label>
+                <label class="font-top" for="title">Titulka</label>
                 <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
             </div>
             <div>
-                <label for="text">Článok</label>
+                <label class="font-top" for="text">Článok</label>
                 <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text"></textarea>
             </div>
             <div>
-                <label for="img">Obrázok</label>
+                <label class="font-top" for="img">Obrázok</label>
+                <div class="imgBox">
+                    <img *ngIf="imgNews" [src]="imgNews" >
+                </div>
                 <input id="img" type="file" (change)="changeImg($event)">
             </div>
-            <button (click)="saveImg()">save</button>
+            <button class="btnSave btn font-top" (click)="saveImg()">save</button>
         </form>
-        
     </div>
-
-    <div>
-        <img *ngIf="imgNews" [src]="imgNews" >
-        <button (click)="loadImg()">load</button>
-    </div>
-    <app-news *ngFor="let item of news" [data]="item"></app-news>
+    
 </div>
+<app-news class="" *ngFor="let item of news" [data]="item"></app-news>
+

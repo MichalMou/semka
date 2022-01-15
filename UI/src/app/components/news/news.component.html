@@ -1,14 +1,13 @@
-<div class="news"> 
-    <div *ngIf="user.rights > 0" class="show-options">
+<div class="news bd"> 
+    <div (click)= "showEdit()" *ngIf="user.rights > 0" class="edit options">
         <fa-icon [icon]="faEdit"></fa-icon>
     </div>
 
-    <div class="hidden"> 
-        <button (click)= "deleteNews()">
-            <fa-icon *ngIf="user.rights > 0" id="delete-news" [icon]="faDelete"></fa-icon>
-        </button>
+    <div (click)= "deleteNews()" *ngIf="user.rights > 0" class="delete options"> 
+        <fa-icon [icon]="faDelete"></fa-icon>
     </div>
-    <img class="" [src]="data.img" >
+
+    <img class="img" [src]="data.img" >
     <div class="">
         <h1>{{data.titul}}</h1>
         <p>{{data.text}}</p>

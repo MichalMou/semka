@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
   }
 
   saveImg(): void {
-    this.http.post("/homepage/saveNews", {
+    if (this.titleNews === '' || this.textNews === '') {
+      this.http.post("/homepage/saveNews", {
       img:this.imgNews,
       title:this.titleNews,
       text:this.textNews
@@ -43,6 +44,10 @@ export class HomeComponent implements OnInit {
         this.toastr.error("Úspešne uložené");
         this.loadImg();
       });
+    } else {
+      this.toastr.error("Titulka a Článok nemôžu byť prázdne.")
+    }
+    
     
   }
 

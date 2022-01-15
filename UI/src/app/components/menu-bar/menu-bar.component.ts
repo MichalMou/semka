@@ -39,9 +39,6 @@ export class MenuBarComponent implements OnInit {
  
   show(): void {
     this.showMenu = !this.showMenu;
-    console.log(this.showMenu);
   }
-
-
    
 }
