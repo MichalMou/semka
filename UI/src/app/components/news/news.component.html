@@ -1,5 +1,5 @@
 <div class="news bd"> 
-    <div (click)= "showEdit()" *ngIf="user.rights > 0" class="edit options">
+    <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
         <fa-icon [icon]="faEdit"></fa-icon>
     </div>
 
@@ -7,9 +7,35 @@
         <fa-icon [icon]="faDelete"></fa-icon>
     </div>
 
-    <img class="img" [src]="data.img" >
-    <div class="">
-        <h1>{{data.titul}}</h1>
-        <p>{{data.text}}</p>
+    <div class="mgt" *ngIf="showEdit">
+        <h1>Upraviť článok</h1>
+        <form>
+            <div class="mg-top-25px">
+                <label class="font-top " for="title">Titulka</label>
+                <input [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text">       
+            </div>
+            <div>
+                <label class="font-top" for="text">Článok</label>
+                <textarea [(ngModel)]="text" class="editor editText" name="text" id="text"></textarea>
+            </div>
+            <div>
+                <label class="font-top" for="img">Obrázok</label>
+                <div class="imgBox">
+                    <img *ngIf="img" [src]="img" >
+                </div>
+                <input id="img" type="file" (change)="changeImg($event)">
+            </div>
+            <div>
+                <button class="btnSave btn font-top" (click)="saveChanged()">save</button>
+            </div>
+        </form>
     </div>
+
+    <div class="mgt">
+        <img class="img" [src]="data.img" >
+        <div>
+            <h1>{{data.titul}}</h1>
+            <p>{{data.text}}</p>
+        </div>
+    </div>  
 </div>

@@ -16,36 +16,60 @@ export class NewsComponent implements OnInit {
   public titul : any;
   public faDelete = faTrashAlt;
   public faEdit = faEdit;
+  public showEdit = false;
+  
 
   @Input() data ? : any;
+  @Input() delMethod ? : any;
+  @Input() reloadNews ? : any;
 
   constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService) { }
 
-  public showMenu = false;
-
   ngOnInit(): void {
     this.user.load();
+    this.text = this.data.text;
+    this.titul = this.data.titul;
+    this.img = this.data.img;
   }
 
   deleteNews(): void {
-    this.http.post("/homepage/deleteNews", {
-      UID:this.data.UID
-      }).subscribe(response=>{
-        this.toastr.error("Úspešne uložené");
-      });
+    this.delMethod(this.data.UID);
   }
 
-  editNews(): void {
-    this.http.post("/homepage/editNews", {
-      UID:this.data.UID
-      }).subscribe(response=>{
-        this.toastr.error("Úspešne uložené");
-      });
+  editShow(): void {
+    this.showEdit = !this.showEdit;
   }
-
   
-  showEdit(): void {
-    this.showMenu = !this.showMenu;
+  changeTitle(title : any): void {
+    this.titul = title;
+  }
+  
+  changeText(text : any): void {
+    this.text = text;
   }
 
+  changeImg(event : any): void {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+      // konvertuje obr do base64 string
+      this.img = reader.result;
+    }, false);
+
+    if (event.target.files.length > 0) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  saveChanged(): void {
+    this.http.post("/homepage/editNews", {
+      UID:this.data.UID,
+      titul:this.titul,
+      text:this.text,
+      img:this.img
+      }).subscribe(response=>{
+        this.toastr.error(response.message);
+      });
+      this.reloadNews();
+  }
 }

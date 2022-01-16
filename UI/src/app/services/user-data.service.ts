@@ -70,7 +70,8 @@ export class UserDataService {
   logout() {
     this.setName("guest");
     this.setEmail("");
-    this.setlogedIn(false)
+    this.setlogedIn(false);
+    this.rights = 0;
 
     this.req.get("/user/logout")
     .subscribe(response=>{

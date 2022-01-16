@@ -35,6 +35,7 @@ export class MenuBarComponent implements OnInit {
    
   logout(): void {
     this.user.logout();
+    
   }
  
   show(): void {

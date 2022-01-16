@@ -9,7 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContentBarComponent } from './components/content-bar/content-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FilmyComponent } from './pages/filmy/filmy.component';
+import { FilmyComponent } from './pages/recenzie/filmy.component';
 import { SerialsComponent } from './pages/serialy/serials.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';

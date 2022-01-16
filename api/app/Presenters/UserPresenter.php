@@ -290,13 +290,10 @@ final class UserPresenter extends Nette\Application\UI\Presenter
         } else {
             $this->sendJson(null);
         }  
-
-        
         // zobrat sekciu zo session
         // premennu zo sekcie
         //  je premenna nastavena / null  ?
         // ak je nastavena nacitam uzivatela a poslem data meno, privilegia, mail
-        // TODO ulozit do userData 
-                
+        // DONE ulozit do userData       
     }
 }

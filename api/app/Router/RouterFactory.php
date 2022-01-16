@@ -20,6 +20,7 @@ final class RouterFactory
 		$router->addRoute('homepage/saveNews', 'Homepage:saveNews'); 
 		$router->addRoute('homepage/loadNews', 'Homepage:loadNews'); 
 		$router->addRoute('homepage/deleteNews', 'Homepage:deleteNews'); 
+		$router->addRoute('homepage/editNews', 'Homepage:editNews'); 
 
 		$router->addRoute('home/dom/<key>','Homepage:dom');
 		$router->addRoute('user/login','User:login');

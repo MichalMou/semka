@@ -1,33 +1,68 @@
 .news {
-    background: #1F2129;
     position: relative;
     padding: 5px;  
-    color: #83848F; 
     margin-bottom: 25px;
     margin-top: 25px;
 }
 
-
-
 .options {
     display: block;
     position: absolute;
-    font-size: 25px;
+    font-size: 35px;
     outline: none;
-    top: 2px;
+    top: 10px;
     cursor: pointer;
 }
 
 .edit {
-    left: 2px;
+    color:#44D2CF;
+    left: 15px;
+}
+
+.editor {
+    border-radius: 5px;
+    border-width: 0px;
+}
+
+.editTitle {
+    width: 100%;
+    height: 50px;
+}
+
+.editText {
+    width: 100%;
+    height: 300px;
 }
 
 .delete{
-    right: 2px;
+    color: #B42D30;
+    right: 15px;
 }
 
-.show-options:focus + .hidden{
+
+.btnSave {
     display: block;
+    background-color: #0264af;
+}
+
+.mgt {
+    margin-top: 25px;
+    border-bottom: solid;
+    border-width: 2px;
+}
+
+label {
+    display: block;
+}
+
+form {
+    width: 696px;
+    max-width: 95%;
+    margin: 50px auto;
+}
+
+div button {
+    margin: 25px auto 0px;
 }
 
 p {
@@ -54,4 +89,10 @@ img {
     h1, p{
         font-size: 25px;
     }
+
+    #title {
+        width: 100%;
+    }
 }
+
+

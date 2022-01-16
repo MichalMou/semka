@@ -106,9 +106,38 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    
-    // TODO deleteNews
+    public function actionEditNews() {
+        $res = $this->allowCors();
+        $req = $this->getHttpRequest();
+        
+        if($req->getMethod() == 'POST') {
+            // rozbali poziadavku
+            $body = Json::decode($req->getRawBody());
 
-    // TODO editNews
+            // vytvori sa novy objekt
+            $object = new stdClass();
+            $object->status = false;
+                      
+            // zmena udajov v DB
+            $data_check = $this->database->query("UPDATE novinky SET titul = ?, text = ? WHERE UID = ?", $body->titul, $body->text, $body->UID);
+            FileSystem::delete("newsImg/obr". $body->UID .".dat");
+            FileSystem::write("newsImg/obr". $body->UID .".dat", $body->img);
 
+            
+            //TODO ulozit obrazok
+
+            // test uspesnosti 
+            if($data_check->getRowCount() == 1) {
+                $object->status = true;   
+                $object->message = "Článok úspešne zmenený.";  
+            } else {
+                $object->message = "Článok sa nepodarilo zmeniť.";  
+            }
+            
+            $this->sendJson($object);
+        } else {
+            $this->sendJson(null);
+        } 
+        // TODO zmena obrazka
+    } 
 }
