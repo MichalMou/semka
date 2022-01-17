@@ -3,7 +3,7 @@
         <a class="logo" href="/home">FILMOTÉKA</a>
     </div>
 
-    <div *ngIf="user.rights > 0" (click)= "show()" class="d-md-none col-19 text-right bars">
+    <div (click)= "show()" class="d-md-none col-19 text-right bars">
         <fa-icon class="logo" [icon]="faIconBars"></fa-icon>
     </div>
 
@@ -16,9 +16,9 @@
                 <a routerLink= "/filmy">RECENZIE</a>
             </li>
 
-            <li>
+            <!-- <li>
                 <app-search></app-search>
-            </li> 
+            </li>  -->
    
             <li *ngIf="!user.logedIn">
                 <a routerLink = "/sign-up" >REGISTRÁCIA</a>
