@@ -10,7 +10,7 @@ use Nette\Utils\FileSystem;
 use Nette\Utils\Json;
 use stdClass;
 
-final class HomepagePresenter extends Nette\Application\UI\Presenter
+final class ReviewsPresenter extends Nette\Application\UI\Presenter
 {
     private $database;
 
@@ -33,7 +33,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         return $res;
     }
    
-    public function actionSaveNews() {
+    public function actionSaveReview() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
                 
@@ -44,20 +44,26 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
+            $imgs[] = $body->imgsRev[0];
 
-            $this->database->query("INSERT INTO novinky(titul,text) VALUES(?, ?)", $body->title, $body->text);
+            $this->database->query("INSERT INTO recenzie(nazov, recenzia, obrazky) VALUES(?, ?, ?)", $body->nameRev, $body->textRev, count($imgs));
             $lastId = $this->database->getInsertId();
             $object->Id = $lastId;
-            FileSystem::write("newsImg/obr". $lastId .".dat", $body->img);
-            $object->status = true;
 
+            // TODO obrazky
+            for ($_i = 0; $_i < count($imgs); $_i++) {
+                FileSystem::write("revImg/obr" . $lastId . "num" . $_i . ".dat", $imgs[$_i]);
+            }
+
+            $object->message = "Recenzia úspešne uložená";
+            $object->status = true;
             $this->sendJson($object);
         } else {
             $this->sendJson(null);
         }  
     }
 
-    public function actionLoadNews() {
+    public function actionLoadReview() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -66,18 +72,20 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             $object = new stdClass();
             $object->status = false;
 
-            $data = $this->database->query("SELECT * FROM novinky")->fetchAll();
-            foreach ($data as &$news) {
+            $data = $this->database->query("SELECT * FROM recenzie")->fetchAll();
+            foreach ($data as &$rev) {
                
                 try {
-                    $news["img"] = FileSystem::read("newsImg/obr". $news["UID"] .".dat");
+                    $img = [];
+                    for ($_i = 0; $_i < $rev["obrazky"]; $_i++) {
+                        array_push($img, FileSystem::read("revImg/obr" . $rev["UID"] . "num" . $_i . ".dat"));
+                    }
+                    $rev["img"] = $img;
                 } catch(IOException $e) {}
             }
-
-            $object->news = $data;
-            //$object->img = FileSystem::read("newsImg/obr.dat");
-
-
+ 
+            $object->revs = $data;
+            $object->status = true;
 
             $this->sendJson($object);
         } else {
@@ -85,7 +93,8 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    public function actionDeleteNews() {
+    // TODO pridat mazanie obrazkov
+    public function actionDeleteReview() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -95,10 +104,10 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             $object = new stdClass();
             $object->status = false;
 
-            $data = $this->database->query("DELETE FROM novinky WHERE UID = ?", $body->UID);
+            $data = $this->database->query("DELETE FROM recenzie WHERE UID = ?", $body->UID);
             if ($data->getRowCount() > 0) {
                 $object->status = true;
-                $object->message = "Záznam úspešne vymazaný.";
+                $object->message = "Recenzia úspešne vymazaný.";
             }
 
             $this->sendJson($object);
@@ -107,7 +116,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    public function actionEditNews() {
+    public function actionEditReview() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         

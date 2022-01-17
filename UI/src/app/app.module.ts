@@ -21,6 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewsComponent } from './components/news/news.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { ReviewComponent } from './components/review/review.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { NewsComponent } from './components/news/news.component';
     InfoComponent,
     LogoutComponent,
     ProfileComponent,
-    NewsComponent
+    NewsComponent,
+    GalleryComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

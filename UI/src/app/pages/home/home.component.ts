@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   loadImg(): void {
     this.http.get("/homepage/loadNews")
     .subscribe(response=>{
-        this.imgNews = response.img;
+        // this.imgNews = response.img;
         this.news = response.news;
     });
   }

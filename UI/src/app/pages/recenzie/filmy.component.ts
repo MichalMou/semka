@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
@@ -9,34 +11,74 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./filmy.component.scss']
 })
 export class FilmyComponent implements OnInit {
-// test
-  nazov:string | null = "neviem uz";
 
-  constructor(private route : ActivatedRoute, public user : UserDataService, private http : HttpClient) { }
+  // udrziava svetky reviews a ich casti
+  public revs : any[] = []; 
+
+  public showMenu = false;
+  
+  // na ukladacie procesy
+  public imgsRev : any[] = [];
+  public textRev = "";  
+  public nameRev = "";
+
+  constructor(private http: RequestService, public user: UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
-    console.log(this.user.name);
-    this.nazov = this.route.snapshot.paramMap.get('nazov');
+    this.loadRevs();
+    this.user.load();
   }
 
-  load(): void {
-    this.http.get("http://localhost/semka/api/www/home/dom/" + this.nazov).subscribe(
-      result=>{
-        console.log(result);
-      },
-      error=>{}      
-    );
+  changeImg(event : any): void {
+    if (event.target.files.length > 0) {
+      for (var i = 0; i < event.target.files.length; i++ ) {
+        const reader = new FileReader();
+        this.imgsRev = [];
 
-    this.http.post("http://localhost/semka/api/www/home/dom/", {
-      meno:this.user.name, 
+        reader.addEventListener("load", () => {
+          // konvertuje obr do base64 string
+          this.imgsRev.push(reader.result);
+          // console.log(i);
+        }, false);
+  
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
+
+  saveRev(): void {
+    if (this.nameRev != "" && this.textRev != "") {
+      this.http.post("/reviews/saveReview", {
+      nameRev:this.nameRev,
+      textRev:this.textRev,
+      imgsRev:this.imgsRev
+      }).subscribe(response=>{
+        this.toastr.error(response.message);
+        this.loadRevs();
+      });
+    }
+  }
+
+  loadRevs(): void {
+    this.http.get("/reviews/loadReview")
+    .subscribe(response=>{
+        // this.imgNews = response.img;
+        this.revs = response.revs;
     });
-
-  }
-
-  loadReviews() : void {
-
-    
   }
 
 
+  // TODO prerobit lambda zapisane del a reload + prirobit edit do review
+  deleteRev = (uid: any): void => {
+    this.http.post("/reviews/deleteReview", {
+      UID:uid
+    }).subscribe(response=>{
+      this.toastr.error("Úspešne vymazané");
+      this.loadRevs();
+    });
+  }
+
+  reloadRevs = (uid: any): void => {
+    this.loadRevs();
+  }
 }
