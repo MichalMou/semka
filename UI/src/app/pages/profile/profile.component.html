@@ -4,19 +4,19 @@
         <div class="col-24">
             <div>
                 <div class="col-24 col-md-11 text-center text-md-right">
-                    <label class="col-10" for="userName"><b>Meno:  </b></label>
+                    <label class="col-10 lbl" for="userName"><b>Meno:  </b></label>
                 </div>
                 <div class="col-24 col-md-13 text-center text-md-left">
-                    <label class="col-10" for="email"><b>{{userName}}</b></label>
+                    <label class="col-10 lbl" for="email"><b>{{userName}}</b></label>
                 </div>
             </div>
 
             <div class="col-24">
                 <div class="col-24 col-md-11 text-center text-md-right">
-                    <label class="col-10" for="email"><b>Email:  </b></label>
+                    <label class="col-10 lbl" for="email"><b>Email:  </b></label>
                 </div>
                 <div class="col-24 col-md-13 text-center text-md-left">
-                    <label class="col-10" for="email"><b>{{email}}</b></label>
+                    <label class="col-10 lbl" for="email"><b>{{email}}</b></label>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <h1>Zmeniť údaje</h1>
             <div>
                 <div class="col-24 col-md-11 text-center text-md-right">
-                    <label class="col-10" for="userName"><b>Nové meno</b></label>
+                    <label class="col-10 lbl" for="userName"><b>Nové meno:</b></label>
                 </div>
                 <div class="col-24 col-md-13 text-center text-md-left">
                     <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userNewName" required >
@@ -36,7 +36,7 @@
 
             <div class="col-24">
                 <div class="col-24 col-md-11 text-center text-md-right">
-                    <label class="col-10" for="pswd"><b>Nové heslo</b></label>
+                    <label class="col-10 lbl" for="pswd"><b>Nové heslo:</b></label>
                 </div>
                 <div class="col-24 col-md-13 text-center text-md-left">
                     <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="newPswd" required>    
@@ -45,7 +45,7 @@
 
             <div class="col-24">
                 <div class="col-24 col-md-11 text-center text-md-right">
-                    <label class="col-10" for="email"><b>Nový email</b></label>
+                    <label class="col-10 lbl" for="email"><b>Nový email:</b></label>
                 </div>
                 <div class="col-24 col-md-13 text-center text-md-left">
                     <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="newEmail" required >    
@@ -54,12 +54,12 @@
         </div>
 
         <div>
-            <button class="btnN" (click)="edit()" >Zmeniť údaje</button>
+            <button class="btnN btt" (click)="edit()" >Zmeniť údaje</button>
         </div>
 
         <div>
             <h1>Vymazať účet</h1>
-            <button class="btnN" (click)="delete()">Vymazať účet</button>
+            <button class="btnN btt" (click)="delete()">Vymazať účet</button>
         </div>
 
     </div>
