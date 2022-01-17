@@ -5,8 +5,6 @@
     margin-top: 25px;
 }
 
-
-
 .edit {
     color:#44D2CF;
     left: 15px;
@@ -39,9 +37,36 @@
 }
 
 .mgt {
-    margin-top: 25px;
+    margin: 50px 25px;
+    min-height: 300px;
+}
+
+.edit-w {
     border-bottom: solid;
     border-width: 2px;
+}
+
+.mgt div {
+    display: block;
+    min-height: auto;
+}
+
+.img {
+    overflow: hidden;
+    max-width: 30%;
+    height: auto;
+}
+
+.img-show {
+    max-width: 100%;
+}
+
+.floated {
+    float: left;
+}
+
+.floated h1 {
+    max-width: 70%;
 }
 
 label {
@@ -58,29 +83,17 @@ div button {
     margin: 25px auto 0px;
 }
 
-p {
-    text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 30px;
-}
-
-img {
-    overflow: hidden;
-    max-width: 90%;
-    height: auto;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 @media (max-width: 768px) {
-    img {
+    .img {
         max-width: 100%;
     }
 
-    h1, p{
-        font-size: 25px;
+    .floated {
+        float: none;
+    }
+
+    .mgt {
+        margin: 50px 5px
     }
 
     #title {

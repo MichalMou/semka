@@ -5,11 +5,11 @@
     <form>
         <div>
             <label class="font-top" for="name">Názov filmu</label>
-            <input [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text">
+            <textarea [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text"></textarea>
         </div>
         <div>
             <label class="font-top" for="review">Recenzia</label>
-            <textarea [(ngModel)]="textRev" required class="editor" name="textRev" id="review"></textarea>
+            <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review"></textarea>
         </div>
         <div>
             <label class="font-top" for="img">Snímky z filmu</label>
@@ -18,12 +18,7 @@
             </div>
             <input (change)="changeImg($event)" id="img" type="file" multiple>
         </div>
-        <div>
-            <label class="font-top" for="actors">Herci</label>
-            
-        </div>
-
-        <button class="btnSave btn font-top" (click)="saveRev()">save</button>
+        <button class="btnSave btn font-top btn-mid mgt25" (click)="saveRev()">save</button>
     </form>
 </div>
 <div>

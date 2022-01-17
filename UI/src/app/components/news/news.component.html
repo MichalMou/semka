@@ -1,4 +1,4 @@
-<div class="news bd mg-bottom-25px"> 
+<div class="news bd"> 
     <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
         <fa-icon [icon]="faEdit"></fa-icon>
     </div>
@@ -7,12 +7,12 @@
         <fa-icon [icon]="faDelete"></fa-icon>
     </div>
 
-    <div class="mgt" *ngIf="showEdit">
+    <div class="mgt edit-w" *ngIf="showEdit">
         <h1>Upraviť článok</h1>
         <form>
-            <div class="mg-top-25px">
+            <div class="mgt25">
                 <label class="font-top " for="title">Titulka</label>
-                <input [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text">       
+                <textarea [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text"></textarea>       
             </div>
             <div>
                 <label class="font-top" for="text">Článok</label>
@@ -21,9 +21,9 @@
             <div>
                 <label class="font-top" for="img">Obrázok</label>
                 <div class="imgBox">
-                    <img *ngIf="img" [src]="img" >
+                    <img *ngIf="img" [src]="img" class="img-show">
                 </div>
-                <input id="img" type="file" (change)="changeImg($event)">
+                <input name="img" type="file" (change)="changeImg($event)">
             </div>
             <div>
                 <button class="btnSave btn font-top" (click)="saveChanged()">save</button>
@@ -32,10 +32,11 @@
     </div>
 
     <div class="mgt">
-        <img class="img" [src]="data.img" >
         <div>
-            <h1>{{data.titul}}</h1>
-            <p>{{data.text}}</p>
+             <img class="floated img" [src]="data.img" >
+        <h1>{{data.titul}}</h1>
         </div>
+       
+        <p>{{data.text}}</p>
     </div>  
 </div>

@@ -21,8 +21,8 @@ final class RouterFactory
 		$router->addRoute('homepage/loadNews', 'Homepage:loadNews'); 
 		$router->addRoute('homepage/deleteNews', 'Homepage:deleteNews'); 
 		$router->addRoute('homepage/editNews', 'Homepage:editNews'); 
-		
-		$router->addRoute('home/dom/<key>','Homepage:dom');
+
+		// $router->addRoute('reviews/<key>','Reviews:loadSingleReviev');
 		
 		$router->addRoute('reviews/saveReview', 'Reviews:saveReview'); 
 		$router->addRoute('reviews/loadReview', 'Reviews:loadReview'); 

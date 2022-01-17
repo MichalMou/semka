@@ -24,7 +24,7 @@ body {
 
 .mid-box {
     display: block;
-    width: 65%; 
+    width: 75%; 
     height: max-content;
     margin: auto;
     text-align: center;
@@ -35,12 +35,18 @@ body {
    
 }
 
+.mgt25 {
+    margin-top: 25px;
+}
+
 .bd {
     background-color: rgba(255,255,255, 0.1);
     color: rgb(197, 196, 196); 
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
+    padding: 25px 0px;
+    margin-bottom: 25px;
 }
 
 
@@ -79,6 +85,18 @@ body {
     background-color: #0264af;
 }
 
+.btnN {
+    background-color: #0264af;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+p {
+    text-align: left;
+    font-size: 25px;
+}
 
 @media (max-width: 768px) {
     .mid-box {
@@ -86,7 +104,17 @@ body {
 
     }
 
-    .font-top {
-        font-size: 30px;
+    p {
+        font-size: 20px;
     }
+
+    .font-top {
+        font-size: 25px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    
 }

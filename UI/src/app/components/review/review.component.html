@@ -10,9 +10,9 @@
     <div class="mgt" *ngIf="showEdit">
         <h1>Upraviť článok</h1>
         <form>
-            <div class="mg-top-25px">
+            <div class="mgt25">
                 <label class="font-top " for="name">Nazov</label>
-                <input [(ngModel)]="name" class="editor editName" name="name" id="name" type="text">       
+                <textarea [(ngModel)]="name" class="editor editName" name="name" id="name" type="text"></textarea>    
             </div>
             <div>
                 <label class="font-top" for="text">Recenzia</label>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div>
-                <button class="btnSave btn font-top" (click)="saveChanged()">save</button>
+                <button class="btnSave btn font-top mgt25" (click)="saveChanged()">save</button>
             </div>
         </form>
     </div>

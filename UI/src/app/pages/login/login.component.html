@@ -1,30 +1,32 @@
-<div *ngIf="!user.logedIn" class="text-center container">
-    <h1>Login</h1>
-    <div class="col-24">
-        <div>
-            <div class="col-24 col-md-11 text-center text-md-right">
-                <label for="userName"><b>Meno</b></label>
+<div class="bd">
+    <div *ngIf="!user.logedIn" class="text-center container">
+        <h1>Login</h1>
+        <div class="col-24">
+            <div>
+                <div class="col-24 col-md-11 text-center text-md-right">
+                    <label for="userName"><b>Meno</b></label>
+                </div>
+                <div class="col-24 col-md-13 text-center text-md-left">
+                    <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userName" required >  
+                </div>
             </div>
-            <div class="col-24 col-md-13 text-center text-md-left">
-                <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userName" required >  
+
+            <div>
+                <div class="col-24 col-md-11 text-center text-md-right">
+                    <label for="pswd"><b>Heslo</b></label>
+                </div>
+                <div class="col-24 col-md-13 text-center text-md-left">
+                    <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="pswd" required>    
+                </div>
             </div>
         </div>
-
-        <div>
-            <div class="col-24 col-md-11 text-center text-md-right">
-                <label for="pswd"><b>Heslo</b></label>
-            </div>
-            <div class="col-24 col-md-13 text-center text-md-left">
-                <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="pswd" required>    
-            </div>
+        
+        <div class="">
+            <button class="btnN" (click)="login()" >Prihlasit</button>
         </div>
     </div>
-    
-    <div class="">
-        <button (click)="login()" >Prihlasit</button>
-    </div>
-</div>
 
-<div *ngIf="user.logedIn" class="text-center container">
-    <h1>Úspešne ste sa prihlasili. </h1>
+    <div *ngIf="user.logedIn" class="text-center container">
+        <h1>Úspešne ste sa prihlasili. </h1>
+    </div>
 </div>

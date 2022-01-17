@@ -4,13 +4,19 @@ label {
 }
 
 form {
-    width: 700px;
+    width: 800px;
     max-width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
 
-form div {
+.btn-mid {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form label {
     text-align: left;
 }
 

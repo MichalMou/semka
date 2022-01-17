@@ -15,10 +15,11 @@
 }
 
 .mgt {
-    margin-top: 25px;
+    margin-top: 50px;
     border-bottom: solid;
     border-width: 2px;
 }
+
 
 label {
     display: block;
@@ -45,7 +46,7 @@ img {
     overflow: hidden;
     max-width: 90%;
     height: auto;
-    margin-top: 30px auto 0px;
+    margin: 30px auto 0px;
 }
 
 @media (max-width: 768px) {
@@ -53,8 +54,14 @@ img {
         max-width: 100%;
     }
 
-    h1, p{
+    h1{
         font-size: 25px;
+    }
+
+    p {
+        font-size: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     #title {

@@ -1,9 +1,12 @@
 .btn-gallery {
     z-index: 1;
     top: 45%;
+    opacity: 0.3;
+
 }
 
 .btn-gallery:hover {
+    opacity: 1;
     color: rgb(252, 249, 120);
 }
 
@@ -40,4 +43,10 @@ img {
     left: 0;
     bottom: 0;
     right: 0;
+}
+@media (max-width: 768px) {
+    .btn-gallery{
+        top: 35%;
+        font-size: 20px;
+    }
 }

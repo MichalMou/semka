@@ -1,3 +1,17 @@
+.imgBox {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100px;
+    max-height: 300px;
+    background-color: gray;
+    overflow: hidden;
+}
+
+.btn-mid {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 label {
     display: block;
     text-align: left;
@@ -9,30 +23,21 @@ form {
     margin: 5px auto;
 }
 
-form div input, form div textarea, img {
+form div textarea, img {
     width: 100%;
 }
 
-textarea {
+.text {
     min-height: 100px;
     max-height: 300px;
 }
-
-.imgBox {
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 100px;
-    max-height: 300px;
-    background-color: gray;
-    overflow: hidden;
-}
-
 
 @media (max-width: 768px) {
-    form, input, img, textarea{
+    form, img, textarea{
         width: 95%;
     }
-    textarea {
+    
+    .text {
         min-height: 150px;
     }
 }
