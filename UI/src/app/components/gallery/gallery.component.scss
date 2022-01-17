@@ -1,0 +1,43 @@
+.btn-gallery {
+    z-index: 1;
+    top: 45%;
+}
+
+.btn-gallery:hover {
+    color: rgb(252, 249, 120);
+}
+
+.content div  {
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+}
+
+.img-hold {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+}
+
+.leftArrow {
+    left: 15px;
+}
+
+.rightArrow {
+    right: 15px;
+}
+
+img {
+    display: block;
+    position: absolute;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

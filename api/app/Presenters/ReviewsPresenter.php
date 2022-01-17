@@ -44,13 +44,13 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
-            $imgs[] = $body->imgsRev[0];
+            $imgs = $body->imgsRev; // [0]
 
             $this->database->query("INSERT INTO recenzie(nazov, recenzia, obrazky) VALUES(?, ?, ?)", $body->nameRev, $body->textRev, count($imgs));
             $lastId = $this->database->getInsertId();
             $object->Id = $lastId;
 
-            // TODO obrazky
+            // obrazky
             for ($_i = 0; $_i < count($imgs); $_i++) {
                 FileSystem::write("revImg/obr" . $lastId . "num" . $_i . ".dat", $imgs[$_i]);
             }
@@ -93,7 +93,6 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
         }  
     }
 
-    // TODO pridat mazanie obrazkov
     public function actionDeleteReview() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
@@ -104,12 +103,19 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
             $object = new stdClass();
             $object->status = false;
 
+            $resultRev = $this->database->fetch("SELECT * FROM recenzie WHERE UID = ?", $body->UID);
+            
             $data = $this->database->query("DELETE FROM recenzie WHERE UID = ?", $body->UID);
-            if ($data->getRowCount() > 0) {
+            if ($data->getRowCount() === 1) {
+                for($_i = 0; $_i < $resultRev->obrazky; $_i++) {
+                    try {
+                       FileSystem::delete("revImg/obr" .  $body->UID . "num" . $_i . ".dat");
+                    } catch(IOException $e) {}
+                }
+
                 $object->status = true;
                 $object->message = "Recenzia úspešne vymazaný.";
             }
-
             $this->sendJson($object);
         } else {
             $this->sendJson(null);
@@ -127,27 +133,67 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
             // vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
-                      
-            // zmena udajov v DB
-            $data_check = $this->database->query("UPDATE novinky SET titul = ?, text = ? WHERE UID = ?", $body->titul, $body->text, $body->UID);
-            FileSystem::delete("newsImg/obr". $body->UID .".dat");
-            FileSystem::write("newsImg/obr". $body->UID .".dat", $body->img);
+            $imgs = $body->imgsRev;
 
             
-            //TODO ulozit obrazok
+            $resultRev = $this->database->fetch("SELECT * FROM recenzie WHERE UID = ?", $body->UID);
+
+            // zmena udajov v DB
+            $result = $this->database->query("UPDATE recenzie SET nazov = ?, recenzia = ?, obrazky = ? WHERE UID = ?", $body->nameRev, $body->textRev, count($imgs), $body->UID);
 
             // test uspesnosti 
-            if($data_check->getRowCount() == 1) {
+            if($result->getRowCount() === 1) {
+
+                for($_i = 0; $_i < $resultRev->obrazky; $_i++) {
+                    try {
+                       FileSystem::delete("revImg/obr" .  $body->UID . "num" . $_i . ".dat");
+                    } catch(IOException $e) {}
+                }
+    
+                for($_j = 0; $_j < count($imgs); $_j++) {
+                    try {
+                        FileSystem::write("revImg/obr" . $body->UID . "num" . $_j . ".dat", $imgs[$_j]);
+                    } catch(IOException $e) {}
+                }                
+
                 $object->status = true;   
-                $object->message = "Článok úspešne zmenený.";  
+                $object->message = "Recenzia úspešne zmenená.";  
             } else {
-                $object->message = "Článok sa nepodarilo zmeniť.";  
+                
+                $object->message = "Recenziu sa nepodarilo zmeniť.";  
             }
-            
             $this->sendJson($object);
         } else {
             $this->sendJson(null);
         } 
         // TODO zmena obrazka
     } 
+
+    public function actionLoadSingleReviev() {
+        $res = $this->allowCors();
+        $req = $this->getHttpRequest();
+        
+        if($req->getMethod() == 'GET') {
+            //vytvori sa novy objekt
+            $object = new stdClass();
+            $object->status = false;
+            $body = Json::decode($req->getRawBody());
+            
+            $data = $this->database->query("SELECT * FROM recenzie WHERE UID = ?", $body->UID)->fetchAll()[0];
+            try {
+                $img = [];
+                for ($_i = 0; $_i < $data["obrazky"]; $_i++) {
+                     array_push($img, FileSystem::read("revImg/obr" . $data["UID"] . "num" . $_i . ".dat"));
+                }
+                $rev["img"] = $img;
+            } catch(IOException $e) {}
+
+            $object->revs = $data;
+            $object->status = true;
+            $this->sendJson($object);
+        } else {
+            $this->sendJson(null);
+        }  
+    }
+
 }

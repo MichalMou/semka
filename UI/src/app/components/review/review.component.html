@@ -1,1 +1,46 @@
-<p>review works!</p>
+<div class="rev bd"> 
+    <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </div>
+
+    <div (click)= "delRev()" *ngIf="user.rights > 0" class="delete options"> 
+        <fa-icon [icon]="faDelete"></fa-icon>
+    </div>
+
+    <div class="mgt" *ngIf="showEdit">
+        <h1>Upraviť článok</h1>
+        <form>
+            <div class="mg-top-25px">
+                <label class="font-top " for="name">Nazov</label>
+                <input [(ngModel)]="name" class="editor editName" name="name" id="name" type="text">       
+            </div>
+            <div>
+                <label class="font-top" for="text">Recenzia</label>
+                <textarea [(ngModel)]="text" class="editor editText" name="text" id="text"></textarea>
+            </div>
+            <div>
+                <label class="font-top" for="img">Obrázky</label>
+                
+                <input id="imgs" multiple type="file" (change)="changeImg($event)">
+                <div class="imgBox">
+                    <img *ngFor="let item of imgs" [src]="item" >
+                </div>
+            </div>
+            <div>
+                <button class="btnSave btn font-top" (click)="saveChanged()">save</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mgt">
+        <!-- <img class="img" [src]="data.img" > -->
+        <div>
+            <h1>{{name}}</h1>
+            <div *ngIf="imgs">
+                <app-gallery [data]="imgs"></app-gallery>
+            </div>
+
+            <p>{{text}}</p>
+        </div>
+    </div>  
+</div>

@@ -43,6 +43,43 @@ body {
     border-radius: 5px;
 }
 
+
+.delete{
+    color: #B42D30;
+    right: 15px;
+}
+
+.edit {
+    color:#44D2CF;
+    left: 15px;
+}
+
+.editor {
+    border-radius: 5px;
+    border-width: 0px;
+}
+
+.content {
+    width: 700px;
+    max-width: 95%;
+    margin: 5px auto;
+}
+
+.options {
+    display: block;
+    position: absolute;
+    font-size: 35px;
+    outline: none;
+    top: 10px;
+    cursor: pointer;
+}
+
+.btnSave {
+    display: block;
+    background-color: #0264af;
+}
+
+
 @media (max-width: 768px) {
     .mid-box {
         width: 85%; 

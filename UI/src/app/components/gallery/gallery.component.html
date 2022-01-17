@@ -1,1 +1,13 @@
-<p>gallery works!</p>
+<div class="content">
+    <div class="img-hold">
+        <div *ngIf="count > 0">
+            <div (click)="switchLeft()" class="options btn-gallery leftArrow">
+                <fa-icon [icon]="faLeft" class="leftArrow"></fa-icon>
+            </div>
+
+            <div (click)="switchRight()" class="options btn-gallery rightArrow">
+                <fa-icon [icon]="faRight" class="rightArrow"></fa-icon>
+            </div>
+        </div><img *ngIf="img" [src]="img">
+    </div>
+</div>

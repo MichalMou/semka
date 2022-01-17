@@ -68,16 +68,12 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 
             $data = $this->database->query("SELECT * FROM novinky")->fetchAll();
             foreach ($data as &$news) {
-               
                 try {
                     $news["img"] = FileSystem::read("newsImg/obr". $news["UID"] .".dat");
                 } catch(IOException $e) {}
             }
 
             $object->news = $data;
-            //$object->img = FileSystem::read("newsImg/obr.dat");
-
-
 
             $this->sendJson($object);
         } else {
@@ -99,6 +95,9 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
             if ($data->getRowCount() > 0) {
                 $object->status = true;
                 $object->message = "Záznam úspešne vymazaný.";
+                try {
+                    FileSystem::delete("newsImg/obr". $body->UID .".dat");
+                } catch(IOException $e) {}
             }
 
             $this->sendJson($object);
@@ -121,11 +120,10 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
                       
             // zmena udajov v DB
             $data_check = $this->database->query("UPDATE novinky SET titul = ?, text = ? WHERE UID = ?", $body->titul, $body->text, $body->UID);
-            FileSystem::delete("newsImg/obr". $body->UID .".dat");
-            FileSystem::write("newsImg/obr". $body->UID .".dat", $body->img);
-
-            
-            //TODO ulozit obrazok
+            try {
+                FileSystem::delete("newsImg/obr". $body->UID .".dat");
+                FileSystem::write("newsImg/obr". $body->UID .".dat", $body->img);
+            } catch(IOException $e) {}
 
             // test uspesnosti 
             if($data_check->getRowCount() == 1) {
@@ -139,6 +137,5 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         } else {
             $this->sendJson(null);
         } 
-        // TODO zmena obrazka
     } 
 }
