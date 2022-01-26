@@ -81,4 +81,11 @@ export class FilmyComponent implements OnInit {
   reloadRevs = (uid: any): void => {
     this.loadRevs();
   }
+
+
+  loadRev(): void {
+    
+  }
 }
+// this.http.post("/reviews/saveReview/home/"+"1", 1 je uid prerobit na premennu 
+// detail recenzie

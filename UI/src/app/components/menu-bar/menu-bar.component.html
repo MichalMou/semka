@@ -1,19 +1,25 @@
 <nav class="col-24 menu font-top">
-    <div class=" col-5">
+    <div class=" col-16 col-md-5">
         <a class="logo" href="/home">FILMOTÉKA</a>
     </div>
 
-    <div (click)= "show()" class="d-md-none col-19 text-right bars">
+    <div (click)= "show()" class="d-md-none col-8 col-md-19 text-right bars">
         <fa-icon class="logo" [icon]="faIconBars"></fa-icon>
     </div>
 
-    <div *ngIf="showMenu || winWidth >= 768" class="col-23 col-md-19">
+    <div *ngIf="showMenu || winWidth >= 768" class="col-24 col-md-19">
         <ul>
             <li>
-                <a class="" routerLink= "/home" >DOMOV</a>
+                <a routerLink= "/home" > 
+                    <fa-icon [icon]="faIconHome"></fa-icon>
+                    Domov
+                </a>
             </li>  
             <li>
-                <a routerLink= "/filmy">RECENZIE</a>
+                <a routerLink= "/filmy">
+                    <fa-icon [icon]="faIconReview"></fa-icon>
+                    Recenzie
+                </a>
             </li>
 
             <!-- <li>
@@ -21,23 +27,28 @@
             </li>  -->
    
             <li *ngIf="!user.logedIn">
-                <a routerLink = "/sign-up" >REGISTRÁCIA</a>
+                <a routerLink = "/sign-up" >
+                    <fa-icon [icon]="faIconSignUp"></fa-icon>
+                    Registrácia
+                </a>
             </li>
             <li *ngIf="!user.logedIn">
                 <a routerLink = "/login" >
-                    <fa-icon id="sign-in" [icon]="faIconSignIn"></fa-icon>
+                    <fa-icon [icon]="faIconSignIn"></fa-icon>
+                    Prihlásiť
                 </a>
             </li>
                            
             <li *ngIf="user.logedIn">
-                <a id="logedin" >PRIHLASENÝ</a>
+                <a >Prihlásený</a>
             </li>
             <li *ngIf="user.logedIn" >
-                <a routerLink = "/profil">PROFIL</a>
+                <a routerLink = "/profil">Profil</a>
             </li>
             <li *ngIf="user.logedIn">
                 <a (click)= "logout()">
-                    <fa-icon id="sign-out" [icon]="faIconSignOut"></fa-icon>
+                    <fa-icon [icon]="faIconSignOut"></fa-icon>
+                    Odhlásiť
                 </a>
             </li>
 

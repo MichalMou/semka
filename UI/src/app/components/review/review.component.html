@@ -35,6 +35,10 @@
     <div class="mgt">
         <!-- <img class="img" [src]="data.img" > -->
         <div>
+            <a routerLink= "/review/{{uid}}">
+                zobrazit jednu recenziu
+            </a>
+
             <h1>{{name}}</h1>
             <div *ngIf="imgs">
                 <app-gallery [data]="imgs"></app-gallery>

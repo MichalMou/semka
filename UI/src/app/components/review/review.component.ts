@@ -14,6 +14,7 @@ export class ReviewComponent implements OnInit {
   public name : any;
   public text : any;
   public imgs : any[] = [];
+  public uid : any;
   public faDelete = faTrashAlt;
   public faEdit = faEdit;
   public showEdit = false;
@@ -28,9 +29,12 @@ export class ReviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.load();
-    this.name = this.data.nazov;
-    this.text = this.data.recenzia;
-    this.imgs = this.data.img;
+    if(this.data){
+      this.uid = this.data.UID;
+      this.name = this.data.nazov;
+      this.text = this.data.recenzia;
+      this.imgs = this.data.img;
+    }
   }
 
   delRev(): void {

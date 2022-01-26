@@ -11,7 +11,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class NewsComponent implements OnInit {
 
-  public text : any;
+  public text : string[] = [];
   public img : any;
   public titul : any;
   public faDelete = faTrashAlt;
@@ -26,8 +26,9 @@ export class NewsComponent implements OnInit {
   constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
+    console.log(this.data.text);
     this.user.load();
-    this.text = this.data.text;
+    this.text = this.data.text.split(/(?:\r\n|\r|\n)/);
     this.titul = this.data.titul;
     this.img = this.data.img;
   }
@@ -40,13 +41,13 @@ export class NewsComponent implements OnInit {
     this.showEdit = !this.showEdit;
   }
   
-  changeTitle(title : any): void {
-    this.titul = title;
-  }
+  // changeTitle(title : any): void {
+  //   this.titul = title;
+  // }
   
-  changeText(text : any): void {
-    this.text = text;
-  }
+  // changeText(text : any): void {
+  //   this.text = text;
+  // }
 
   changeImg(event : any): void {
     const reader = new FileReader();

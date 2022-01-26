@@ -1,21 +1,9 @@
 .background {
     height: 100%; 
     width: 100%;
+    // min-height: calc(100vh - 50px);
     background: url("../../../assets/background/background1.jpg"); 
     background-size: cover;
-    margin-left: auto;
-    margin-right: auto;
     background-position: center center;
     background-attachment: fixed;
-    margin-top: 50px;
-}
-
-.tall {
-    min-height: 100vh;
-}
-
-@media (max-width: 768px) {
-    .background {
-        margin-top: 50px;
-    }
 }

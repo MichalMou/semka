@@ -1,28 +1,28 @@
 <div class="bd">
-    <div *ngIf="user.logedIn" class="text-center container">
+    <div *ngIf="user.logedIn" class="text-center">
         <h1>Profil</h1>
         <div class="col-24">
             <div>
-                <div class="col-24 col-md-11 text-center text-md-right">
+                <div class="col-12 col-md-11 text-right">
                     <label class="col-10 lbl" for="userName"><b>Meno:  </b></label>
                 </div>
-                <div class="col-24 col-md-13 text-center text-md-left">
+                <div class="col-12 col-md-13 text-left">
                     <label class="col-10 lbl" for="email"><b>{{userName}}</b></label>
                 </div>
             </div>
 
             <div class="col-24">
-                <div class="col-24 col-md-11 text-center text-md-right">
+                <div class="col-12 col-md-11 text-right">
                     <label class="col-10 lbl" for="email"><b>Email:  </b></label>
                 </div>
-                <div class="col-24 col-md-13 text-center text-md-left">
+                <div class="col-12 col-md-13 text-left">
                     <label class="col-10 lbl" for="email"><b>{{email}}</b></label>
                 </div>
             </div>
         </div>
     </div>
 
-    <div *ngIf="user.logedIn" class="text-center container">
+    <div *ngIf="user.logedIn" class="text-center">
         <div>
             <h1>Zmeniť údaje</h1>
             <div>
@@ -54,17 +54,17 @@
         </div>
 
         <div>
-            <button class="btnN btt" (click)="edit()" >Zmeniť údaje</button>
+            <button class="btn" (click)="edit()" >Zmeniť údaje</button>
         </div>
 
         <div>
             <h1>Vymazať účet</h1>
-            <button class="btnN btt" (click)="delete()">Vymazať účet</button>
+            <button class="btn" (click)="delete()">Vymazať účet</button>
         </div>
 
     </div>
 
-    <div *ngIf="!user.logedIn" class="text-center container">
+    <div *ngIf="!user.logedIn" class="text-center">
         <h1>Nie ste prihlasený.</h1>
     </div>
 </div>

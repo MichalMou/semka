@@ -3,6 +3,8 @@
     padding: 5px;  
     margin-bottom: 25px;
     margin-top: 25px;
+    background: rgba(0,0,0,0.1);
+    cursor: default;
 }
 
 .edit {
@@ -10,9 +12,20 @@
     left: 15px;
 }
 
+.delete{
+    color: #B42D30;
+    right: 15px;
+}
+
 .editor {
     border-radius: 5px;
     border-width: 0px;
+    height: fit-content;
+}
+
+.edit-divider {
+    border-bottom: solid;
+    border-width: 2px;
 }
 
 .editTitle {
@@ -25,36 +38,19 @@
     height: 300px;
 }
 
-.delete{
-    color: #B42D30;
-    right: 15px;
-}
-
-
-.btnSave {
-    display: block;
-    background-color: #0264af;
-}
-
 .mgt {
-    margin: 50px 25px;
+    margin-top: 50px;
+    // margin: 50px 25px;
     min-height: 300px;
 }
 
-.edit-w {
-    border-bottom: solid;
-    border-width: 2px;
-}
 
-.mgt div {
-    display: block;
-    min-height: auto;
-}
 
 .img {
     overflow: hidden;
     max-width: 30%;
     height: auto;
+    padding: 10px 10px 0px 10px;
 }
 
 .img-show {
@@ -65,8 +61,8 @@
     float: left;
 }
 
-.floated h1 {
-    max-width: 70%;
+.text-spacer {
+    padding: 10px;
 }
 
 label {
@@ -79,13 +75,17 @@ form {
     margin: 50px auto;
 }
 
-div button {
-    margin: 25px auto 0px;
+h1 {
+    padding: 10px 0px;
+}
+
+h1, p {
+    margin: 0px;
 }
 
 @media (max-width: 768px) {
     .img {
-        max-width: 100%;
+        max-width: calc(100% - 20px);
     }
 
     .floated {
@@ -98,6 +98,11 @@ div button {
 
     #title {
         width: 100%;
+    }
+
+    h1 {
+        padding: 10px;
+        
     }
 }
 

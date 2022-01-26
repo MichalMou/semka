@@ -169,7 +169,7 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
         // TODO zmena obrazka
     } 
 
-    public function actionLoadSingleReviev() {
+    public function actionLoadSingleReviev($uid) {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
@@ -179,7 +179,7 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
             $object->status = false;
             $body = Json::decode($req->getRawBody());
             
-            $data = $this->database->query("SELECT * FROM recenzie WHERE UID = ?", $body->UID)->fetchAll()[0];
+            $data = $this->database->query("SELECT * FROM recenzie WHERE UID = ?", $uid)->fetchAll()[0];
             try {
                 $img = [];
                 for ($_i = 0; $_i < $data["obrazky"]; $_i++) {

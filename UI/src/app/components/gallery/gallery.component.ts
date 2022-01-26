@@ -48,7 +48,6 @@ export class GalleryComponent implements OnInit {
   setImg(): void {
     if (this.data) {
       this.img = this.data[this.imgNum];
-      console.log(this.imgNum);
     }
   }
 }

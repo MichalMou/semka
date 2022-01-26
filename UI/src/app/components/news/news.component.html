@@ -1,42 +1,45 @@
 <div class="news bd"> 
-    <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
-        <fa-icon [icon]="faEdit"></fa-icon>
-    </div>
-
-    <div (click)= "deleteNews()" *ngIf="user.rights > 0" class="delete options"> 
-        <fa-icon [icon]="faDelete"></fa-icon>
-    </div>
-
-    <div class="mgt edit-w" *ngIf="showEdit">
-        <h1>Upraviť článok</h1>
-        <form>
-            <div class="mgt25">
-                <label class="font-top " for="title">Titulka</label>
-                <textarea [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text"></textarea>       
-            </div>
-            <div>
-                <label class="font-top" for="text">Článok</label>
-                <textarea [(ngModel)]="text" class="editor editText" name="text" id="text"></textarea>
-            </div>
-            <div>
-                <label class="font-top" for="img">Obrázok</label>
-                <div class="imgBox">
-                    <img *ngIf="img" [src]="img" class="img-show">
-                </div>
-                <input name="img" type="file" (change)="changeImg($event)">
-            </div>
-            <div>
-                <button class="btnSave btn font-top" (click)="saveChanged()">save</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="mgt">
-        <div>
-             <img class="floated img" [src]="data.img" >
-        <h1>{{data.titul}}</h1>
+    <div>
+        <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
+            <fa-icon [icon]="faEdit"></fa-icon>
         </div>
-       
-        <p>{{data.text}}</p>
-    </div>  
+
+        <div (click)= "deleteNews()" *ngIf="user.rights > 0" class="delete options"> 
+            <fa-icon [icon]="faDelete"></fa-icon>
+        </div>
+    </div>
+    <div class="mgt">
+        <div class="edit-divider" *ngIf="showEdit">
+            <h1>Upraviť článok</h1>
+            <form>
+                <div>
+                    <label class="font-top " for="title">Titulka</label>
+                    <textarea [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text"></textarea>       
+                </div>
+                <div>
+                    <label class="font-top" for="text">Článok</label>
+                    <textarea [(ngModel)]="data.text" class="editor editText" name="text" id="text" ></textarea>
+                </div>
+                <div>
+                    <label class="font-top" for="img">Obrázok</label>
+                    <div class="imgBox">
+                        <img *ngIf="img" [src]="img" class="img-show">
+                    </div>
+                    <input name="img" type="file" (change)="changeImg($event)">
+                </div>
+                <div>
+                    <button class="btn font-top" (click)="saveChanged()">save</button>
+                </div>
+            </form>
+        </div>
+    
+        <div>
+            <img class="floated img" [src]="data.img" >
+            <h1>{{data.titul}}</h1>
+            <div class="text-spacer">
+                <p *ngFor="let item of text">{{item}}<br></p>
+            </div>
+            
+        </div>
+    </div>     
 </div>

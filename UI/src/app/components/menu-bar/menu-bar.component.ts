@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { faBars, faSignInAlt, faSignOutAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSignInAlt, faSignOutAlt, faSearch, faHome, faFilm, faRegistered } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu-bar',
@@ -12,9 +12,12 @@ export class MenuBarComponent implements OnInit {
   constructor(public user: UserDataService) { }
  
   public faIconBars = faBars;
+  public faIconSignUp = faRegistered;
   public faIconSignIn = faSignInAlt;
   public faIconSignOut = faSignOutAlt;
   public faIconSearch = faSearch;
+  public faIconHome = faHome;
+  public faIconReview = faFilm;
   public open = false;
   public responsive = false;
   public showMenu = false;
@@ -22,6 +25,7 @@ export class MenuBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.load();
+    this.showMenu = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -35,7 +39,6 @@ export class MenuBarComponent implements OnInit {
    
   logout(): void {
     this.user.logout();
-    
   }
  
   show(): void {
