@@ -1,32 +1,31 @@
-<div *ngIf="user.rights > 0" class="bd">
-    <div class="font-top center">
-        <h1>Recenzie filmov</h1>
-    </div>
-    <div class="font-top center">
-        <h1>Pridať Recenziu</h1>
-    </div>
-    <form>
-        <div>
-            <label class="font-top" for="name">Názov filmu</label>
-            <textarea [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text"></textarea>
+<div class="background">
+    <div *ngIf="user.rights > 0" class="bd">
+        <div class="font-top center">
+            <h1>Recenzie filmov</h1>
         </div>
-        <div>
-            <label class="font-top" for="review">Recenzia</label>
-            <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review"></textarea>
+        <div class="font-top center">
+            <h1>Pridať Recenziu</h1>
         </div>
-        <div>
-            <label class="font-top" for="img">Snímky z filmu</label>
-            <div class="imgBox">
-                <img *ngIf="imgsRev" [src]="imgsRev" >
+        <form>
+            <div>
+                <label class="font-top" for="name">Názov filmu</label>
+                <textarea [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text"></textarea>
             </div>
-            <input (change)="changeImg($event)" id="img" type="file" multiple>
-        </div>
-        <button class="btnSave btn font-top btn-mid mgt25" (click)="saveRev()">save</button>
-    </form>
-</div>
-<div>
-    
-    <app-review *ngFor="let item of revs" [deleteRev]="deleteRev" [reloadRevs]="reloadRevs" [data]="item"></app-review>
-    
-
+            <div>
+                <label class="font-top" for="review">Recenzia</label>
+                <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review"></textarea>
+            </div>
+            <div>
+                <label class="font-top" for="img">Snímky z filmu</label>
+                <div class="imgBox">
+                    <img *ngIf="imgsRev" [src]="imgsRev" >
+                </div>
+                <input (change)="changeImg($event)" id="img" type="file" multiple>
+            </div>
+            <button class="btnSave btn font-top btn-mid mgt25" (click)="saveRev()">save</button>
+        </form>
+    </div>
+    <div>
+        <app-review *ngFor="let item of revs" [deleteRev]="deleteRev" [reloadRevs]="reloadRevs" [data]="item"></app-review>
+    </div>
 </div>
