@@ -115,6 +115,19 @@ body {
     cursor: pointer;
 }
 
+.center {
+    text-align: center;
+}
+
+.background {
+    position: relative;
+    padding: 5px;  
+    margin-bottom: 25px;
+    margin-top: 25px;
+    background: rgba(0,0,0,0.1);
+    cursor: default;
+}
+
 // .btnSave {
 //     display: block;
 //     background-color: #0264af;

@@ -1,5 +1,8 @@
 <div *ngIf="user.rights > 0" class="bd">
-    <div class="font-top">
+    <div class="font-top center">
+        <h1>Recenzie filmov</h1>
+    </div>
+    <div class="font-top center">
         <h1>Pridať Recenziu</h1>
     </div>
     <form>
@@ -22,9 +25,7 @@
     </form>
 </div>
 <div>
-    <div class="font-top">
-        <h1>Recenzie filmov</h1>
-    </div>
+    
     <app-review *ngFor="let item of revs" [deleteRev]="deleteRev" [reloadRevs]="reloadRevs" [data]="item"></app-review>
     
 

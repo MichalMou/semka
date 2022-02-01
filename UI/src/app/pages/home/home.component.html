@@ -1,31 +1,37 @@
-<div *ngIf="user.rights > 0" class="bd">
-    <div class="font-top">
-        <h1>Pridať článok</h1>
+<div class="background">
+    <div class="font-top center">
+        <h1>Novinky zo sveta kinematografie</h1>
     </div>
-    <form>
-        <div>
-            <label class="font-top" for="title">Titulka</label>
-            <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
+    <div *ngIf="user.rights > 0" class="bd">
+        <div class="font-top center">
+            <h1>Pridať článok</h1>
         </div>
-        <div>
-            <label class="font-top" for="text">Článok</label>
-            <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text"></textarea>
-        </div>
-        <div>
-            <label class="font-top" for="img">Obrázok</label>
-            <div class="imgBox">
-                <img *ngIf="imgNews" [src]="imgNews" >
+        <form>
+            <div>
+                <label class="font-top" for="title">Titulka</label>
+                <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
             </div>
-            <input id="img" type="file" (change)="changeImg($event)">
-        </div>
-
-        <button class="btnSave btn font-top btn-mid" (click)="saveImg()">save</button>
-
-    </form>
+            <div>
+                <label class="font-top" for="text">Článok</label>
+                <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text"></textarea>
+            </div>
+            <div>
+                <label class="font-top" for="img">Obrázok</label>
+                <div class="imgBox">
+                    <img *ngIf="imgNews" [src]="imgNews" >
+                </div>
+                <input id="img" type="file" (change)="changeImg($event)">
+            </div>
+            
+            <div class="center">
+                <button class="btnSave btn font-top btn-mid" (click)="saveImg()">save</button>
+            </div>
+    
+        </form>
+    </div>
 </div>
-<div class="font-top">
-    <h1>Novinky zo sveta kinematografie</h1>
-</div>
+
+
 <app-news *ngFor="let item of news" [delMethod]="deleteNews" [reloadNews]="reloadNews" [data]="item"></app-news>
 
         <!-- <div class="btnSave btn font-top " (click)="saveImg()">save</div> -->

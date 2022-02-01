@@ -1,4 +1,4 @@
-<div class="news bd"> 
+<div class="background bd"> 
     <div>
         <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
             <fa-icon [icon]="faEdit"></fa-icon>
@@ -10,10 +10,12 @@
     </div>
     <div class="mgt">
         <div class="edit-divider" *ngIf="showEdit">
-            <h1>Upraviť článok</h1>
+            
+            <h1 class="center">Upraviť článok</h1>
+                
             <form>
                 <div>
-                    <label class="font-top " for="title">Titulka</label>
+                    <label class="font-top" for="title">Titulka</label>
                     <textarea [(ngModel)]="titul" class="editor editTitle" name="title" id="title" type="text"></textarea>       
                 </div>
                 <div>
@@ -27,7 +29,7 @@
                     </div>
                     <input name="img" type="file" (change)="changeImg($event)">
                 </div>
-                <div>
+                <div class="center">
                     <button class="btn font-top" (click)="saveChanged()">save</button>
                 </div>
             </form>
