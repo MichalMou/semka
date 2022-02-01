@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SerialsComponent } from './pages/serialy/serials.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { ReviewComponent } from './pages/review/review.component';
+import { ReviewLinkComponent } from './pages/review-link/review-link.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'info', component: InfoComponent },
   { path: 'profil', component: ProfileComponent },
-  { path: 'review/:uid', component: ReviewComponent }
+  { path: 'reviewLink/:uid', component: ReviewLinkComponent }
   
 ];
 

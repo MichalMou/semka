@@ -22,7 +22,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewsComponent } from './components/news/news.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
-import { ReviewComponent } from './components/review-link/review.component';
+import { ReviewComponent } from './components/review/review.component';
+import { ReviewLinkComponent } from './pages/review-link/review-link.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ReviewComponent } from './components/review-link/review.component';
     ProfileComponent,
     NewsComponent,
     GalleryComponent,
-    ReviewComponent
+    ReviewComponent,
+    ReviewLinkComponent
   ],
   imports: [
     BrowserModule,
