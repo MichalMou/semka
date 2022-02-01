@@ -10,13 +10,13 @@
     <div *ngIf="showMenu || winWidth >= 768" class="col-24 col-md-19">
         <ul>
             <li>
-                <a routerLink= "/home" > 
+                <a (click)= "show()" routerLink= "/home" > 
                     <fa-icon [icon]="faIconHome"></fa-icon>
                     Domov
                 </a>
             </li>  
             <li>
-                <a routerLink= "/filmy">
+                <a (click)= "show()" routerLink= "/filmy">
                     <fa-icon [icon]="faIconReview"></fa-icon>
                     Recenzie
                 </a>
@@ -27,13 +27,13 @@
             </li>  -->
    
             <li *ngIf="!user.logedIn">
-                <a routerLink = "/sign-up" >
+                <a (click)= "show()" routerLink = "/sign-up" >
                     <fa-icon [icon]="faIconSignUp"></fa-icon>
                     Registrácia
                 </a>
             </li>
             <li *ngIf="!user.logedIn">
-                <a routerLink = "/login" >
+                <a (click)= "show()" routerLink = "/login" >
                     <fa-icon [icon]="faIconSignIn"></fa-icon>
                     Prihlásiť
                 </a>
@@ -43,10 +43,10 @@
                 <a >Prihlásený</a>
             </li>
             <li *ngIf="user.logedIn" >
-                <a routerLink = "/profil">Profil</a>
+                <a (click)= "show()" routerLink = "/profil">Profil</a>
             </li>
             <li *ngIf="user.logedIn">
-                <a (click)= "logout()">
+                <a (click)= "show()" (click)= "logout()">
                     <fa-icon [icon]="faIconSignOut"></fa-icon>
                     Odhlásiť
                 </a>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -21,6 +22,11 @@ export class FilmyComponent implements OnInit {
   public imgsRev : any[] = [];
   public textRev = "";  
   public nameRev = "";
+  public showAdd = false;
+  public faMinus = faMinus;
+  public faPlus = faPlus;
+  
+
 
   constructor(private http: RequestService, public user: UserDataService, private toastr : ToastrService) { }
 
@@ -65,6 +71,10 @@ export class FilmyComponent implements OnInit {
         // this.imgNews = response.img;
         this.revs = response.revs;
     });
+  }
+
+  cShowAdd(): void {
+    this.showAdd = !this.showAdd;
   }
 
 

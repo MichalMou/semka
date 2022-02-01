@@ -4,9 +4,20 @@
             <h1>Recenzie filmov</h1>
         </div>
         <div class="font-top center">
-            <h1>Pridať Recenziu</h1>
+            <h1>
+                Pridať Recenziu
+                <div class="options-container">
+                    <div (click)= "cShowAdd()" *ngIf="showAdd" class="options">
+                        <fa-icon [icon]="faMinus"></fa-icon>
+                    </div>
+                    <div (click)= "cShowAdd()" *ngIf="!showAdd" class="options">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </div>
+                </div>
+            </h1>
+            
         </div>
-        <form>
+        <form *ngIf="showAdd">
             <div>
                 <label class="font-top" for="name">Názov filmu</label>
                 <textarea [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text"></textarea>

@@ -79,7 +79,6 @@ body {
 }
 
 .bd {
-    
     padding: 25px 0px;
     margin-bottom: 25px;
 }
@@ -168,5 +167,11 @@ p {
         font-size: 25px;
     }
 
-    
+    .background {
+        padding: 0px;  
+    }
+
+    .bd {
+        margin-bottom: 0px;
+    }
 }
