@@ -1,15 +1,17 @@
-<div class="rev bd"> 
+<div class="rev bd background"> 
     <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
-        <!-- <fa-icon [icon]="faEdit"></fa-icon> -->
+        <fa-icon [icon]="faEdit"></fa-icon>
     </div>
 
     <div (click)= "delRev()" *ngIf="user.rights > 0" class="delete options"> 
-        <!-- <fa-icon [icon]="faDelete"></fa-icon> -->
+        <fa-icon [icon]="faDelete"></fa-icon>
     </div>
 
-    <div class="mgt" *ngIf="showEdit">
-        <h1>Upraviť článok</h1>
-        <form>
+    <div class="editBorder" *ngIf="showEdit">
+        <div class="center">
+            <h1>Upraviť článok</h1>
+        </div>
+        <form class="editor-form">
             <div class="mgt25">
                 <label class="font-top " for="name">Nazov</label>
                 <textarea [(ngModel)]="name" class="editor editName" name="name" id="name" type="text"></textarea>    
@@ -26,25 +28,42 @@
                     <img *ngFor="let item of imgs" [src]="item" >
                 </div>
             </div>
-            <div>
+            <div class="center">
                 <button class="btnSave btn font-top mgt25" (click)="saveChanged()">save</button>
             </div>
         </form>
     </div>
 
-    <div class="mgt">
-        <!-- <img class="img" [src]="data.img" > -->
-        <div>
-            <a routerLink= "/review/{{uid}}">
-                zobrazit jednu recenziu
-            </a>
-
+    <!-- <img class="img" [src]="data.img" > -->
+    <div class="mgt25">
+        <div class="center">
             <h1>{{name}}</h1>
-            <div *ngIf="imgs">
-                <app-gallery [data]="imgs"></app-gallery>
-            </div>
-
-            <p>{{text}}</p>
         </div>
-    </div>  
+        <div *ngIf="showImgs">
+            <app-gallery [data]="imgs"></app-gallery>
+        </div>
+        <div class="text-spacer">
+            <p *ngFor="let item of textP">{{item}}<br></p>
+        </div>
+        <!-- <p>{{text}}</p> -->
+    </div>
+
+    
+    <div class="comments-whole">
+        <div class="center">
+            <h1>Komenty</h1>
+        </div>
+
+        <form>
+            <textarea [(ngModel)]="newComment" class="comments-entry" name="textRev" id="review" rows="10"></textarea>
+
+            <div class="center">
+                <button class="btnSave btn font-top btn-mid mgt25" (click)="saveComment()">komentovať</button>
+            </div>
+        </form>
+        <app-comment *ngFor="let item of comments" [delMethod]="deleteComm" [reloadMethod]="reloadComm" [data]="item"></app-comment>
+
+        <!-- <p *ngFor="let item of comments">{{item.text}}<br></p> -->
+
+    </div>
 </div>

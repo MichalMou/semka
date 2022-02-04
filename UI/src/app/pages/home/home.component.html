@@ -2,11 +2,24 @@
     <div class="font-top center">
         <h1>Novinky zo sveta kinematografie</h1>
     </div>
+</div>
+
+<div class="background"> 
     <div *ngIf="user.rights > 0" class="bd">
         <div class="font-top center">
-            <h1>Pridať článok</h1>
+            <h1>
+                Pridať článok
+                <div class="options-container">
+                    <div (click)= "cShowAdd()" *ngIf="showAdd" class="options">
+                        <fa-icon [icon]="faMinus"></fa-icon>
+                    </div>
+                    <div (click)= "cShowAdd()" *ngIf="!showAdd" class="options">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </div>
+                </div>
+            </h1>
         </div>
-        <form>
+        <form *ngIf="showAdd">
             <div>
                 <label class="font-top" for="title">Titulka</label>
                 <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
@@ -29,9 +42,8 @@
     
         </form>
     </div>
+
+    <app-news *ngFor="let item of news" [delMethod]="deleteNews" [reloadNews]="reloadNews" [data]="item"></app-news>
 </div>
-
-
-<app-news *ngFor="let item of news" [delMethod]="deleteNews" [reloadNews]="reloadNews" [data]="item"></app-news>
 
         <!-- <div class="btnSave btn font-top " (click)="saveImg()">save</div> -->

@@ -1,0 +1,24 @@
+<div class="comment-background">
+    <div class="comment-container">
+        <div (click)= "showEditComment()" *ngIf="user.name == data.user" class="comment-options edit">
+            <fa-icon [icon]="faEdit"></fa-icon>
+        </div>
+        <p class="comment-user">
+            používateľ:  
+            {{data.user}}</p>
+
+        <div (click)= "deleteComment()" *ngIf="user.name == data.user || user.name == 'admin'" class="comment-options delete"> 
+            <fa-icon [icon]="faDelete"></fa-icon>
+        </div>
+    </div>
+    
+    <form *ngIf="showEdit">
+        <textarea [(ngModel)]="text" class="comment-edit" name="textRev" id="review" rows="10"></textarea>
+
+        <div class="center">
+            <button class="btnSave btn font-top btn-mid mgt25" (click)="saveEditedComment()">zmeniť</button>
+        </div>
+    </form>
+
+    <p *ngIf="!showEdit" class="comment">{{text}}</p>
+</div>

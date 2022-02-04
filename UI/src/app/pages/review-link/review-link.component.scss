@@ -14,21 +14,34 @@
     height: 300px;
 }
 
-.mgt {
+.editBorder {
     margin-top: 50px;
     border-bottom: solid;
     border-width: 2px;
 }
 
-
-label {
-    display: block;
+.center {
+    text-align: center;
 }
 
-form {
+.comments-entry {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.comments-whole {
+    margin: 20px;
+}
+
+.editor-form {
     width: 696px;
     max-width: 95%;
     margin: 50px auto;
+}
+
+label {
+    display: block;
 }
 
 div button {

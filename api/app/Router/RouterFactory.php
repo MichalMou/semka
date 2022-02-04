@@ -22,14 +22,16 @@ final class RouterFactory
 		$router->addRoute('homepage/deleteNews', 'Homepage:deleteNews'); 
 		$router->addRoute('homepage/editNews', 'Homepage:editNews'); 
 
-		$router->addRoute('reviews/loadSingleReviev/<uid>','Reviews:loadSingleReviev');
-		
+		$router->addRoute('reviews/load','Reviews:load');
 		$router->addRoute('reviews/saveReview', 'Reviews:saveReview'); 
 		$router->addRoute('reviews/loadReview', 'Reviews:loadReview'); 
 		$router->addRoute('reviews/deleteReview', 'Reviews:deleteReview'); 
 		$router->addRoute('reviews/editReview', 'Reviews:editReview'); 
 
-
+		$router->addRoute('comments/saveComment', 'comments:saveComment'); 
+		$router->addRoute('comments/loadComment', 'comments:loadComment'); 
+		$router->addRoute('comments/deleteComment', 'comments:deleteComment'); 
+		$router->addRoute('comments/editComment', 'comments:editComment');
 
 		$router->addRoute('user/login','User:login');
 		$router->addRoute('user/logout','User:logout');

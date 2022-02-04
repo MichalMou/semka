@@ -1,8 +1,11 @@
 <div class="background">
+    <div class="font-top center">
+        <h1>Recenzie filmov</h1>
+    </div>
+</div>
+
+<div class="background">
     <div *ngIf="user.rights > 0" class="bd">
-        <div class="font-top center">
-            <h1>Recenzie filmov</h1>
-        </div>
         <div class="font-top center">
             <h1>
                 Pridať Recenziu
@@ -24,7 +27,7 @@
             </div>
             <div>
                 <label class="font-top" for="review">Recenzia</label>
-                <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review"></textarea>
+                <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review" rows="10"></textarea>
             </div>
             <div>
                 <label class="font-top" for="img">Snímky z filmu</label>
@@ -33,10 +36,29 @@
                 </div>
                 <input (change)="changeImg($event)" id="img" type="file" multiple>
             </div>
-            <button class="btnSave btn font-top btn-mid mgt25" (click)="saveRev()">save</button>
+
+            <div class="font-top">
+                <label class="inl-b" >pridať herca</label>
+
+                <div (click)= "showAddActor()" class="options-actor inl-b">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                </div>
+        
+   
+            </div>
+
+
+
+            <div class="center">
+                <button class="btnSave btn font-top btn-mid mgt25" (click)="saveRev()">save</button>
+            </div>
         </form>
+
+
+
     </div>
     <div>
         <app-review *ngFor="let item of revs" [deleteRev]="deleteRev" [reloadRevs]="reloadRevs" [data]="item"></app-review>
     </div>
 </div>
+ 

@@ -15,10 +15,14 @@ export class ReviewLinkComponent implements OnInit {
   public uid : any;
   public name : any;
   public text : any;
+  public textP : string[] = [];
   public imgs : any[] = [];
   public faDelete = faTrashAlt;
   public faEdit = faEdit;
   public showEdit = false;
+  public showImgs = false;
+  public newComment = "";
+  public comments : any[] = [];
 
   @Input() data ? : any;
   @Input() deleteRev ? : any;
@@ -28,15 +32,20 @@ export class ReviewLinkComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap.get('uid');
-    console.log(this.uid);
-    this.user.load();
-    if(this.data){
-      this.uid = this.data.UID;
-      this.name = this.data.nazov;
-      this.text = this.data.recenzia;
-      this.imgs = this.data.img;
-    }
-    
+    this.load();
+  }
+
+  load(): void {
+     this.http.post("/reviews/load", {
+      UID:this.uid
+      }).subscribe(response=>{
+        this.name = response.revs.nazov;
+        this.text = response.revs.recenzia;
+        this.textP = this.text.split(/(?:\r\n|\r|\n)/);
+        this.imgs = response.imgs;
+        this.showImgs = true;
+      });  
+      this.loadComment()
   }
 
   delRev(): void {
@@ -47,7 +56,6 @@ export class ReviewLinkComponent implements OnInit {
     this.showEdit = !this.showEdit;
   }
   
-  //
   changeImg(event : any): void {
     if (event.target.files.length > 0) {
       for (var i = 0; i < event.target.files.length; i++ ) {
@@ -65,15 +73,50 @@ export class ReviewLinkComponent implements OnInit {
   }
 
   saveChanged(): void {
+    this.textP = this.text.split(/(?:\r\n|\r|\n)/);
     this.http.post("/reviews/editReview", {
-      UID:this.data.UID,
+      UID:this.uid,
       nameRev:this.name,
       textRev:this.text,
       imgsRev:this.imgs
       }).subscribe(response=>{
         this.toastr.error(response.message);
-        this.reloadRevs();
       });
+  }
+
+  
+  saveComment(): void {
+    this.http.post("/comments/saveComment", {
+      rev:this.uid,
+      user:this.user.name,
+      text:this.newComment
+      }).subscribe(response=>{
+        this.toastr.error(response.message);
+        this.newComment = "";
+        this.loadComment();
+      });
+  }
+
+  loadComment(): void {
+    this.http.post("/comments/loadComment", {
+      rev:this.uid
+      }).subscribe(response=>{
+        this.comments = response.comments.reverse();
+      });
+  }
+
+  // TODO
+  deleteComm = (uid: any): void => {
+    this.http.post("/comments/deleteComment", {
+      UID:uid
+    }).subscribe(response=>{
+      this.toastr.error("Úspešne vymazaný");
+      this.load();
+    });
+  }
+
+  reloadComm = (): void => {
+    this.load();
   }
 
 }

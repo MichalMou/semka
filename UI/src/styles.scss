@@ -66,6 +66,7 @@ body {
 
 .mid-box {
     width: 75%; 
+    max-width: 1200px;
     margin: auto;
     padding: 25px;
     background: #3e3f42;
@@ -83,15 +84,14 @@ body {
     margin-bottom: 25px;
 }
 
-
 .delete{
     color: #B42D30;
-    right: 25px;
+    right: 15px;
 }
 
 .edit {
     color:#44D2CF;
-    left: 25px;
+    left: 15px;
 }
 
 .editor {
@@ -109,7 +109,7 @@ body {
     display: block;
     position: absolute;
     font-size: 35px;
-    outline: none;
+    transition: 0.3s;
     top: 10px;
     cursor: pointer;
 }
@@ -126,15 +126,6 @@ body {
     background: rgba(0,0,0,0.1);
     cursor: default;
 }
-
-// .btnSave {
-//     display: block;
-//     background-color: #0264af;
-// }
-
-// .btnN {
-//     background-color: #0264af;
-// }
 
 input {
     max-width: calc(100% - 50px);

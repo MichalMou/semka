@@ -26,7 +26,6 @@ export class NewsComponent implements OnInit {
   constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
-    console.log(this.data.text);
     this.user.load();
     this.text = this.data.text.split(/(?:\r\n|\r|\n)/);
     this.titul = this.data.titul;
@@ -41,14 +40,6 @@ export class NewsComponent implements OnInit {
     this.showEdit = !this.showEdit;
   }
   
-  // changeTitle(title : any): void {
-  //   this.titul = title;
-  // }
-  
-  // changeText(text : any): void {
-  //   this.text = text;
-  // }
-
   changeImg(event : any): void {
     const reader = new FileReader();
 

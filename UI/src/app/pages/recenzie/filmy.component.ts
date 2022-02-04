@@ -23,10 +23,9 @@ export class FilmyComponent implements OnInit {
   public textRev = "";  
   public nameRev = "";
   public showAdd = false;
+  public showAddActorOption = false;
   public faMinus = faMinus;
   public faPlus = faPlus;
-  
-
 
   constructor(private http: RequestService, public user: UserDataService, private toastr : ToastrService) { }
 
@@ -77,6 +76,9 @@ export class FilmyComponent implements OnInit {
     this.showAdd = !this.showAdd;
   }
 
+  showAddActor(): void {
+    this.showAddActorOption = !this.showAddActorOption;
+  }
 
   // TODO prerobit lambda zapisane del a reload + prirobit edit do review
   deleteRev = (uid: any): void => {
@@ -91,11 +93,4 @@ export class FilmyComponent implements OnInit {
   reloadRevs = (uid: any): void => {
     this.loadRevs();
   }
-
-
-  loadRev(): void {
-    
-  }
 }
-// this.http.post("/reviews/saveReview/home/"+"1", 1 je uid prerobit na premennu 
-// detail recenzie

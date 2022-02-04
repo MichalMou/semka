@@ -24,6 +24,8 @@ import { NewsComponent } from './components/news/news.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ReviewLinkComponent } from './pages/review-link/review-link.component';
+import { ActorComponent } from './components/actor/actor.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ReviewLinkComponent } from './pages/review-link/review-link.component';
     NewsComponent,
     GalleryComponent,
     ReviewComponent,
-    ReviewLinkComponent
+    ReviewLinkComponent,
+    ActorComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

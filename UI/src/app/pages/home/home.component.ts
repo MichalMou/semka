@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -15,7 +16,9 @@ export class HomeComponent implements OnInit {
   public textNews = "";
   public titleNews = "";
   public showMenu = false;
-  //@Input() data ? : any;
+  public showAdd = false;
+  public faMinus = faMinus;
+  public faPlus = faPlus;
 
   constructor(private http: RequestService, public user: UserDataService, private toastr : ToastrService) { }
 
@@ -80,5 +83,9 @@ export class HomeComponent implements OnInit {
 
   reloadNews = (uid: any): void => {
     this.loadImg();
+  }
+
+  cShowAdd(): void {
+    this.showAdd = !this.showAdd;
   }
 }

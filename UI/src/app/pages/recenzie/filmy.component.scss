@@ -24,6 +24,12 @@
     left: 5px;
 }
 
+.options-actor {
+    position: relative;
+    left: 10px;
+    cursor: pointer;
+}
+
 label {
     display: block;
     text-align: left;
@@ -39,7 +45,9 @@ form div textarea, img {
     width: 100%;
 }
 
-
+.inl-b {
+    display: inline-block;
+}
 
 @media (max-width: 768px) {
     form, img, textarea{
@@ -48,5 +56,9 @@ form div textarea, img {
     
     .text {
         min-height: 150px;
+    }
+
+    .options {
+        top: 12px;
     }
 }

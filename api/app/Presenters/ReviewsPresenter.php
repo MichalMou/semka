@@ -71,10 +71,10 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
+            $object->message = "test";
 
             $data = $this->database->query("SELECT * FROM recenzie")->fetchAll();
             foreach ($data as &$rev) {
-               
                 try {
                     $img = [];
                     for ($_i = 0; $_i < $rev["obrazky"]; $_i++) {
@@ -169,24 +169,26 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
         // TODO zmena obrazka
     } 
 
-    public function actionLoadSingleReviev($uid) {
+    public function actionLoad() {
         $res = $this->allowCors();
         $req = $this->getHttpRequest();
         
-        if($req->getMethod() == 'GET') {
+        if($req->getMethod() == 'POST') {
             //vytvori sa novy objekt
             $object = new stdClass();
             $object->status = false;
             $body = Json::decode($req->getRawBody());
             
-            $data = $this->database->query("SELECT * FROM recenzie WHERE UID = ?", $uid)->fetchAll()[0];
-            try {
-                $img = [];
+            $data = $this->database->query("SELECT * FROM recenzie WHERE UID = ?", $body->UID)->fetchAll()[0];
+            
+            $img = [];
                 for ($_i = 0; $_i < $data["obrazky"]; $_i++) {
                      array_push($img, FileSystem::read("revImg/obr" . $data["UID"] . "num" . $_i . ".dat"));
                 }
-                $rev["img"] = $img;
-            } catch(IOException $e) {}
+            $object->imgs = $img;
+            // try {
+                
+            // } catch(IOException $e) {}
 
             $object->revs = $data;
             $object->status = true;
