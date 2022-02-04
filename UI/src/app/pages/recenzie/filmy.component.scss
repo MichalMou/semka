@@ -12,10 +12,6 @@
     margin-right: auto;
 }
 
-.text {
-    min-height: 100px;
-    max-height: 300px;
-}
 
 .options-container {
     display: inline-block;
@@ -24,10 +20,8 @@
     left: 5px;
 }
 
-.options-actor {
-    position: relative;
-    left: 10px;
-    cursor: pointer;
+.mgt10 {
+    margin-top: 10px;
 }
 
 label {
@@ -41,12 +35,8 @@ form {
     margin: 5px auto;
 }
 
-form div textarea, img {
+.new-rev-text, img {
     width: 100%;
-}
-
-.inl-b {
-    display: inline-block;
 }
 
 @media (max-width: 768px) {

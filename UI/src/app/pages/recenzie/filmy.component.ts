@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
@@ -13,17 +11,12 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class FilmyComponent implements OnInit {
 
-  // udrziava svetky reviews a ich casti
   public revs : any[] = []; 
-
-  public showMenu = false;
-  
-  // na ukladacie procesy
   public imgsRev : any[] = [];
   public textRev = "";  
   public nameRev = "";
   public showAdd = false;
-  public showAddActorOption = false;
+  public showMenu = false;
   public faMinus = faMinus;
   public faPlus = faPlus;
 
@@ -67,7 +60,6 @@ export class FilmyComponent implements OnInit {
   loadRevs(): void {
     this.http.get("/reviews/loadReview")
     .subscribe(response=>{
-        // this.imgNews = response.img;
         this.revs = response.revs;
     });
   }
@@ -76,9 +68,6 @@ export class FilmyComponent implements OnInit {
     this.showAdd = !this.showAdd;
   }
 
-  showAddActor(): void {
-    this.showAddActorOption = !this.showAddActorOption;
-  }
 
   // TODO prerobit lambda zapisane del a reload + prirobit edit do review
   deleteRev = (uid: any): void => {

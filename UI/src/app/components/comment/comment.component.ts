@@ -34,7 +34,7 @@ export class CommentComponent implements OnInit {
   }
 
   saveEditedComment(): void {
-    this.http.post("/comments/deleteComment", {
+    this.http.post("/comments/editComment", {
       UID:this.data.UID,
       text:this.text
     }).subscribe(response=>{

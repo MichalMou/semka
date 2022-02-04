@@ -6,7 +6,7 @@
 
 <div class="background">
     <div *ngIf="user.rights > 0" class="bd">
-        <div class="font-top center">
+        <div class="font-top center mgt10">
             <h1>
                 Pridať Recenziu
                 <div class="options-container">
@@ -22,30 +22,56 @@
         </div>
         <form *ngIf="showAdd">
             <div>
-                <label class="font-top" for="name">Názov filmu</label>
-                <textarea [(ngModel)]="nameRev" required class="editor" name="nameRev" id="name" type="text"></textarea>
+                <label class="font-top mgt10" for="name">Názov filmu</label>
+                <textarea [(ngModel)]="nameRev" required class="editor new-rev-text" name="nameRev" id="name" type="text"></textarea>
             </div>
             <div>
-                <label class="font-top" for="review">Recenzia</label>
-                <textarea [(ngModel)]="textRev" required class="editor text" name="textRev" id="review" rows="10"></textarea>
+                <label class="font-top mgt10" for="review">Recenzia</label>
+                <textarea [(ngModel)]="textRev" required class="editor new-rev-text" name="textRev" id="review" rows="10"></textarea>
             </div>
             <div>
-                <label class="font-top" for="img">Snímky z filmu</label>
+                <label class="font-top mgt10" for="img">Snímky z filmu</label>
                 <div class="imgBox">
                     <img *ngIf="imgsRev" [src]="imgsRev" >
                 </div>
                 <input (change)="changeImg($event)" id="img" type="file" multiple>
             </div>
 
-            <div class="font-top">
-                <label class="inl-b" >pridať herca</label>
+            <div>
+                <!-- <div class="font-top mgt10">
+                    <label class="inl-b" >Pridať herca</label>
+                    <div (click)= "showAddActor()" class="options-actor inl-b">
+                        <fa-icon [icon]="faPlus"></fa-icon>
+                    </div>
+                </div> -->
+               
 
-                <div (click)= "showAddActor()" class="options-actor inl-b">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                </div>
-        
-   
+                <!-- <div *ngIf="showAddActorOption">
+                    <div class="font-top mgt10">
+                        <label class="font-top" for="nameActor">Meno herca: </label>
+                        <textarea [(ngModel)]="nameActor" class="editor actor" name="nameActor" id="nameActor" type="text"></textarea>
+                    </div>
+                    <div class="font-top mgt10">
+                        <label class="font-top" for="roleActor">Meno hranej postavy: </label>
+                        <textarea [(ngModel)]="roleActor" class="editor actor" name="roleActor" id="roleActor" type="text"></textarea>
+                    </div>
+                    
+                    <div class="font-top">
+                        <label class="font-top">Fotka herca</label>                            
+                        <div class="imgActor mgt10">
+                            <img *ngIf="imgActor" [src]="imgActor" >
+                        </div>
+                        <input (change)="changeImg($event)" id="img" type="file" multiple>
+                    </div>
+
+                    <div class="center">
+                        <button class="btnSave btn font-top btn-mid mgt25" (click)="addActor()">Pridať postavu</button>
+                    </div>
+                </div> -->
             </div>
+            
+            
+
 
 
 

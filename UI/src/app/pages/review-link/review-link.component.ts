@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
 import { UserDataService } from 'src/app/services/user-data.service';
@@ -17,8 +17,13 @@ export class ReviewLinkComponent implements OnInit {
   public text : any;
   public textP : string[] = [];
   public imgs : any[] = [];
+  public imgActor : any;
+  public nameActor = "";
+  public roleActor = "";
   public faDelete = faTrashAlt;
   public faEdit = faEdit;
+  public faPlus = faPlus;
+  public showAddActorOption = false;
   public showEdit = false;
   public showImgs = false;
   public newComment = "";
@@ -117,6 +122,28 @@ export class ReviewLinkComponent implements OnInit {
 
   reloadComm = (): void => {
     this.load();
+  }
+
+  
+  showAddActor(): void {
+    this.showAddActorOption = !this.showAddActorOption;
+  }
+
+  changeActorImg(event : any): void {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+      // konvertuje obr do base64 string
+      this.imgActor = reader.result;
+    }, false);
+
+    if (event.target.files.length > 0) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  addActor(): void {
+    
   }
 
 }

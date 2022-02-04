@@ -35,7 +35,7 @@
     </div>
 
     <!-- <img class="img" [src]="data.img" > -->
-    <div class="mgt25">
+    <div class="mgt25 btm-bd">
         <div class="center">
             <h1>{{name}}</h1>
         </div>
@@ -46,6 +46,38 @@
             <p *ngFor="let item of textP">{{item}}<br></p>
         </div>
         <!-- <p>{{text}}</p> -->
+
+        <div class="actor-whole">
+            <div class="font-top mgt10">
+                <label class="inl-b" >Pridať herca</label>
+                <div (click)= "showAddActor()" class="options-actor inl-b">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                </div>
+            </div>
+
+            <div *ngIf="showAddActorOption">
+                <div class="font-top mgt10">
+                    <label class="font-top" for="nameActor">Meno herca: </label>
+                    <textarea [(ngModel)]="nameActor" class="editor actor" name="nameActor" id="nameActor" type="text"></textarea>
+                </div>
+                <div class="font-top mgt10">
+                    <label class="font-top" for="roleActor">Meno hranej postavy: </label>
+                    <textarea [(ngModel)]="roleActor" class="editor actor" name="roleActor" id="roleActor" type="text"></textarea>
+                </div>
+                
+                <div class="font-top">
+                    <label class="font-top">Fotka herca</label>                            
+                    <div class="imgActor mgt10">
+                        <img *ngIf="imgActor" [src]="imgActor" >
+                    </div>
+                    <input (change)="changeImg($event)" id="img" type="file" multiple>
+                </div>
+
+                <div class="center">
+                    <button class="btnSave btn font-top btn-mid mgt25" (click)="addActor()">Pridať postavu</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     

@@ -40,6 +40,39 @@
     margin: 50px auto;
 }
 
+.btm-bd {
+    border-bottom: 4px solid #3E3F42;
+}
+
+.actor-whole {
+    margin: 20px;
+}
+
+.imgActor {
+    height: 110px;
+    width: 110px;
+    background-color: gray;
+    overflow: hidden;
+}
+
+.actor {
+    width: 40%;
+    height: 30px;
+    padding: 0;
+    resize: none;
+}
+
+
+.options-actor {
+    position: relative;
+    left: 10px;
+    cursor: pointer;
+}
+
+.inl-b {
+    display: inline-block;
+}
+
 label {
     display: block;
 }
