@@ -16,20 +16,21 @@
                     <div (click)= "cShowAdd()" *ngIf="!showAdd" class="options">
                         <fa-icon [icon]="faPlus"></fa-icon>
                     </div>
-                </div>
+                </div> 
             </h1>
+            
         </div>
-        <form *ngIf="showAdd">
+        <form *ngIf="showAdd" class="form-add">
             <div>
-                <label class="font-top" for="title">Titulka</label>
-                <input required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text">
+                <label class="font-top mgt10" for="title">Titulka</label>
+                <textarea required ngModel name="title" #title="ngModel" (change)="changeTitle(title)" id="title" type="text" class="editor"></textarea>
             </div>
             <div>
-                <label class="font-top" for="text">Článok</label>
-                <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text"></textarea>
+                <label class="font-top mgt10" for="text">Článok</label>
+                <textarea required ngModel name="text" #text="ngModel" (change)="changeText(text)" id="text" class="editor"></textarea>
             </div>
             <div>
-                <label class="font-top" for="img">Obrázok</label>
+                <label class="font-top mgt10" for="img">Obrázok</label>
                 <div class="imgBox">
                     <img *ngIf="imgNews" [src]="imgNews" >
                 </div>

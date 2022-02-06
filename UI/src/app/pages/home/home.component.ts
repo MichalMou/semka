@@ -36,13 +36,13 @@ export class HomeComponent implements OnInit {
   }
 
   saveImg(): void {
-    if (this.titleNews != '' || this.textNews != '') {
+    if (this.titleNews != '' && this.textNews != '') {
       this.http.post("/homepage/saveNews", {
       img:this.imgNews,
       title:this.titleNews,
       text:this.textNews
       }).subscribe(response=>{
-        this.toastr.error("Úspešne uložené");
+        this.toastr.success("Úspešne uložené");
         this.loadImg();
       });
     } else {
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
     this.http.post("/homepage/deleteNews", {
       UID:uid
     }).subscribe(response=>{
-      this.toastr.error("Úspešne vymazané");
+      this.toastr.success("Úspešne vymazané");
       this.loadImg();
     });
   }

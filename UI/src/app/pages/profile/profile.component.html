@@ -1,61 +1,63 @@
-<div class="bd">
-    <div *ngIf="user.logedIn" class="text-center">
+<div class="bd background">
+    <div *ngIf="user.logedIn" class="text-center btm-bd">
         <h1>Profil</h1>
         <div class="col-24">
             <div>
-                <div class="col-12 col-md-11 text-right">
+                <div class="col-12 col-md-12 text-right">
                     <label class="col-10 lbl" for="userName"><b>Meno:  </b></label>
                 </div>
-                <div class="col-12 col-md-13 text-left">
-                    <label class="col-10 lbl" for="email"><b>{{userName}}</b></label>
+                <div class="col-12 col-md-12 text-left">
+                    <label class="col-10 lbl" for="email"><b>{{user.name}}</b></label>
                 </div>
             </div>
 
             <div class="col-24">
-                <div class="col-12 col-md-11 text-right">
+                <div class="col-12 col-md-12 text-right">
                     <label class="col-10 lbl" for="email"><b>Email:  </b></label>
                 </div>
-                <div class="col-12 col-md-13 text-left">
-                    <label class="col-10 lbl" for="email"><b>{{email}}</b></label>
+                <div class="col-12 col-md-12 text-left">
+                    <label class="col-10 lbl" for="email"><b>{{user.email}}</b></label>
                 </div>
             </div>
         </div>
     </div>
 
     <div *ngIf="user.logedIn" class="text-center">
-        <div>
+        <div class="btm-bd">
             <h1>Zmeniť údaje</h1>
             <div>
-                <div class="col-24 col-md-11 text-center text-md-right">
+                <div class="col-24 col-md-12 text-center text-md-right">
                     <label class="col-10 lbl" for="userName"><b>Nové meno:</b></label>
                 </div>
-                <div class="col-24 col-md-13 text-center text-md-left">
+                <div class="col-24 col-md-12 text-center text-md-left">
                     <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userNewName" required >
                 </div>
             </div>
 
             <div class="col-24">
-                <div class="col-24 col-md-11 text-center text-md-right">
+                <div class="col-24 col-md-12 text-center text-md-right">
                     <label class="col-10 lbl" for="pswd"><b>Nové heslo:</b></label>
                 </div>
-                <div class="col-24 col-md-13 text-center text-md-left">
+                <div class="col-24 col-md-12 text-center text-md-left">
                     <input type="password" placeholder="Zadaj heslo" name="pswd" [(ngModel)]="newPswd" required>    
                 </div>
             </div>
 
             <div class="col-24">
-                <div class="col-24 col-md-11 text-center text-md-right">
+                <div class="col-24 col-md-12 text-center text-md-right">
                     <label class="col-10 lbl" for="email"><b>Nový email:</b></label>
                 </div>
-                <div class="col-24 col-md-13 text-center text-md-left">
+                <div class="col-24 col-md-12 text-center text-md-left">
                     <input type="email" placeholder="Zadaj email" name="mail" [(ngModel)]="newEmail" required >    
                 </div>
             </div>
+
+            <div>
+                <button class="btn" (click)="edit()" >Zmeniť údaje</button>
+            </div>
         </div>
 
-        <div>
-            <button class="btn" (click)="edit()" >Zmeniť údaje</button>
-        </div>
+        
 
         <div>
             <h1>Vymazať účet</h1>

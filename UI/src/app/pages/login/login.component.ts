@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       if(response.status) {
         // nastavim session id pri uspesnom prihlaseni
         this.user.setSessionId(response.sid);
-        this.toastr.error(response.message);
+        this.toastr.success(response.message);
         this.user.setlogedIn(response.status);
         this.user.setName(this.userName);
         this.user.setEmail(response.email);

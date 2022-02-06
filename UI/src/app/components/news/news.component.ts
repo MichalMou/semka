@@ -54,14 +54,24 @@ export class NewsComponent implements OnInit {
   }
 
   saveChanged(): void {
+    let changedText = "";
+    for (let item of this.data.text) {
+      changedText = changedText + item;
+    }
     this.http.post("/homepage/editNews", {
       UID:this.data.UID,
       titul:this.titul,
-      text:this.text,
+      text:changedText,
       img:this.img
       }).subscribe(response=>{
-        this.toastr.error(response.message);
+        if (response.status) {
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error(response.message);
+        }
       });
-      this.reloadNews();
+    this.reloadNews();
+
   }
+
 }

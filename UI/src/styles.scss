@@ -89,6 +89,13 @@ body {
     margin: 5px auto;
 }
 
+.options-container {
+    display: inline-block;
+    position: relative;
+    top: -45px;
+    left: 5px;
+}
+
 .options {
     display: block;
     position: absolute;
@@ -111,6 +118,37 @@ body {
     cursor: default;
 }
 
+.form-add {
+    width: 700px;
+    max-width: 95%;
+    margin: 5px auto;
+}
+
+.inl-b {
+    display: inline-block;
+}
+
+.btm-bd {
+    border-bottom: 4px solid #3E3F42;
+}
+
+.mgt10 {
+    margin-top: 10px;
+}
+
+.imgActorBox {
+    height: 220px;
+    width: 220px;
+    background-color: gray;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imgActor {
+    width: 100%;
+}
+
 input {
     max-width: calc(100% - 50px);
 }
@@ -125,6 +163,8 @@ p {
 }
 
 @media (max-width: 768px) {
+    
+
     .mid-box {
         width: calc(100% - 20px); 
         padding: 25px 10px;

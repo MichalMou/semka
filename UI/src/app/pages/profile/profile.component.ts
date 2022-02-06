@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
           if(response.status) {
             // uspesna zmena udajov
-            this.toastr.error(response.message);  
+            this.toastr.success(response.message);  
             // TODO zmenit udaje user
             this.user.setName(this.userNewName);
             this.user.setEmail(this.newEmail);
@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
       }).subscribe(response=>{
         if(response.status) {
           // uspesne zmazany acc
-          this.toastr.error(response.message);  
+          this.toastr.success(response.message);  
           // zmenit udaje user
           this.user.setName("guest");
           this.user.setEmail("");

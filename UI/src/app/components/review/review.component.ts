@@ -69,7 +69,11 @@ export class ReviewComponent implements OnInit {
       textRev:this.text,
       imgsRev:this.imgs
       }).subscribe(response=>{
-        this.toastr.error(response.message);
+        if (response.status) {
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error(response.message);
+        }
         this.reloadRevs();
       });
   }

@@ -1,0 +1,35 @@
+.actor-single {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    background: rgba($color: #000000, $alpha: 0.4);
+    padding: 10px;
+    padding-top: 35px;
+    padding-bottom: 0;
+}
+
+.actor-opt {
+    font-size: 20px;
+}
+
+.imgActorBox {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 20px;
+    margin: 5px;
+}
+
+@media (max-width: 768px) {
+    .actor-single {
+        margin: 10px 0px;
+        display: block;
+        padding-bottom: 10px;
+    }
+
+    .font-top {
+        font-size: 16px;
+    }
+}

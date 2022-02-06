@@ -40,28 +40,18 @@
     margin: 50px auto;
 }
 
-.btm-bd {
-    border-bottom: 4px solid #3E3F42;
-}
-
 .actor-whole {
     margin: 20px;
-}
-
-.imgActor {
-    height: 110px;
-    width: 110px;
-    background-color: gray;
-    overflow: hidden;
 }
 
 .actor {
     width: 40%;
     height: 30px;
     padding: 0;
+    padding-left: 5px;
+    font-size: 23px;
     resize: none;
 }
-
 
 .options-actor {
     position: relative;
@@ -69,8 +59,8 @@
     cursor: pointer;
 }
 
-.inl-b {
-    display: inline-block;
+.text-just {
+    text-align: justify;
 }
 
 label {
@@ -89,16 +79,11 @@ p {
 }
 
 img {
-    overflow: hidden;
-    max-width: 90%;
-    height: auto;
-    margin: 30px auto 0px;
+    max-width: 100%;
 }
 
 @media (max-width: 768px) {
-    img {
-        max-width: 100%;
-    }
+    
 
     h1{
         font-size: 25px;
@@ -112,5 +97,9 @@ img {
 
     #title {
         width: 100%;
+    }
+
+    .actor-whole {
+        margin: 10px 0px;
     }
 }

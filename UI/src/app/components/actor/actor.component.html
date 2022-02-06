@@ -1,1 +1,39 @@
-<p>actor works!</p>
+<div class="actor-single" >
+    <div (click)= "showEditAct()" *ngIf="user.rights > 0" class="edit options actor-opt">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </div>
+
+    <div (click)= "deleteAct()" *ngIf="user.rights > 0" class="delete options actor-opt"> 
+        <fa-icon [icon]="faDelete"></fa-icon>
+    </div>
+
+    <div *ngIf="showEditActor" class="center">
+        <div class="font-top mgt10">
+            <textarea [(ngModel)]="name" class="editor actor" name="nameActor" id="nameActor" type="text" placeholder="Meno herca"></textarea>
+        </div>
+        <div class="font-top mgt10">
+            <textarea [(ngModel)]="role" class="editor actor" name="roleActor" id="roleActor" type="text" placeholder="Meno hranej postavy"></textarea>
+        </div>
+        
+        <div class="font-top">
+            <label class="font-top">Fotka herca</label>                            
+            <div class="imgActorBox mgt10">
+                <img *ngIf="img" [src]="img" class="imgActor">
+            </div>
+            <input (change)="changeActorImg($event)" type="file">
+        </div>
+
+        <div>
+            <button class="btnSave btn font-top btn-mid mgt25" (click)="editAct()">Zmeniť udaje</button>
+        </div>
+    </div>
+
+    <div *ngIf="!showEditActor">
+        <div class="imgActorBox mgt10">
+            <img *ngIf="data.img" [src]="data.img" class="imgActor">
+        </div>
+        <h1>{{data.meno}}</h1>
+        <h1>{{data.rola}}</h1>
+    </div>
+    
+</div>

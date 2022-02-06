@@ -25,7 +25,7 @@
                 
                 <input id="imgs" multiple type="file" (change)="changeImg($event)">
                 <div class="imgBox">
-                    <img *ngFor="let item of imgs" [src]="item" >
+                    <img *ngFor="let item of imgs" [src]="item" class="imgEdit">
                 </div>
             </div>
             <div class="center">
@@ -36,47 +36,61 @@
 
     <!-- <img class="img" [src]="data.img" > -->
     <div class="mgt25 btm-bd">
-        <div class="center">
-            <h1>{{name}}</h1>
+        <div class="btm-bd">
+            <div class="center">
+                <h1>{{name}}</h1>
+            </div>
+            <div *ngIf="showImgs">
+                <app-gallery [data]="imgs"></app-gallery>
+            </div>
+            <div>
+                <p *ngFor="let item of textP" class="text-just">{{item}}<br></p>
+            </div>
         </div>
-        <div *ngIf="showImgs">
-            <app-gallery [data]="imgs"></app-gallery>
-        </div>
-        <div class="text-spacer">
-            <p *ngFor="let item of textP">{{item}}<br></p>
-        </div>
+       
         <!-- <p>{{text}}</p> -->
 
         <div class="actor-whole">
-            <div class="font-top mgt10">
-                <label class="inl-b" >Pridať herca</label>
-                <div (click)= "showAddActor()" class="options-actor inl-b">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                </div>
+            <div class="center">
+                <h1>Herci</h1>
             </div>
 
-            <div *ngIf="showAddActorOption">
-                <div class="font-top mgt10">
-                    <label class="font-top" for="nameActor">Meno herca: </label>
-                    <textarea [(ngModel)]="nameActor" class="editor actor" name="nameActor" id="nameActor" type="text"></textarea>
+            <div>
+                <div class="font-top mgt10 center">
+                    <label class="inl-b" >
+                        Pridať herca
+                        <div (click)= "showAddActor()" class="options-actor inl-b">
+                            <fa-icon [icon]="faPlus"></fa-icon>
+                        </div>
+                    </label>
+                    
                 </div>
-                <div class="font-top mgt10">
-                    <label class="font-top" for="roleActor">Meno hranej postavy: </label>
-                    <textarea [(ngModel)]="roleActor" class="editor actor" name="roleActor" id="roleActor" type="text"></textarea>
-                </div>
-                
-                <div class="font-top">
-                    <label class="font-top">Fotka herca</label>                            
-                    <div class="imgActor mgt10">
-                        <img *ngIf="imgActor" [src]="imgActor" >
+
+                <div *ngIf="showAddActorOption" class="center">
+                    <div class="font-top mgt10">
+                        <textarea [(ngModel)]="nameActor" class="editor actor" name="nameActor" id="nameActor" type="text" placeholder="Meno herca"></textarea>
                     </div>
-                    <input (change)="changeImg($event)" id="img" type="file" multiple>
-                </div>
+                    <div class="font-top mgt10">
+                        <textarea [(ngModel)]="roleActor" class="editor actor" name="roleActor" id="roleActor" type="text" placeholder="Meno hranej postavy"></textarea>
+                    </div>
+                    
+                    <div class="font-top">
+                        <label class="font-top">Fotka herca</label>                            
+                        <div class="imgActorBox mgt10">
+                            <img *ngIf="imgActor" [src]="imgActor" class="imgActor">
+                        </div>
+                        <input (change)="changeActorImg($event)" id="img" type="file" multiple>
+                    </div>
 
-                <div class="center">
-                    <button class="btnSave btn font-top btn-mid mgt25" (click)="addActor()">Pridať postavu</button>
+                    <div class="center">
+                        <button class="btnSave btn font-top btn-mid mgt25" (click)="saveActor()">Pridať postavu</button>
+                    </div>
                 </div>
             </div>
+
+            <div class="center">
+                <app-actor *ngFor="let item of actors" [data]="item" [reloadMethod]="reloadComm"></app-actor>
+            </div>    
         </div>
     </div>
 

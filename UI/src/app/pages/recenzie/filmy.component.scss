@@ -12,27 +12,13 @@
     margin-right: auto;
 }
 
-
-.options-container {
-    display: inline-block;
-    position: relative;
-    top: -45px;
-    left: 5px;
-}
-
-.mgt10 {
-    margin-top: 10px;
+img {
+    max-width: 100%;
 }
 
 label {
     display: block;
     text-align: left;
-}
-
-form {
-    width: 700px;
-    max-width: 95%;
-    margin: 5px auto;
 }
 
 .new-rev-text, img {

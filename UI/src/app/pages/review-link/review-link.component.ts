@@ -28,6 +28,7 @@ export class ReviewLinkComponent implements OnInit {
   public showImgs = false;
   public newComment = "";
   public comments : any[] = [];
+  public actors : any[] = [];
 
   @Input() data ? : any;
   @Input() deleteRev ? : any;
@@ -50,7 +51,8 @@ export class ReviewLinkComponent implements OnInit {
         this.imgs = response.imgs;
         this.showImgs = true;
       });  
-      this.loadComment()
+      this.loadComment();
+      this.loadActor();
   }
 
   delRev(): void {
@@ -85,7 +87,11 @@ export class ReviewLinkComponent implements OnInit {
       textRev:this.text,
       imgsRev:this.imgs
       }).subscribe(response=>{
-        this.toastr.error(response.message);
+        if (response.status) {
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error(response.message);
+        }
       });
   }
 
@@ -96,7 +102,11 @@ export class ReviewLinkComponent implements OnInit {
       user:this.user.name,
       text:this.newComment
       }).subscribe(response=>{
-        this.toastr.error(response.message);
+        if (response.status) {
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error(response.message);
+        }
         this.newComment = "";
         this.loadComment();
       });
@@ -110,12 +120,11 @@ export class ReviewLinkComponent implements OnInit {
       });
   }
 
-  // TODO
   deleteComm = (uid: any): void => {
     this.http.post("/comments/deleteComment", {
       UID:uid
     }).subscribe(response=>{
-      this.toastr.error("Úspešne vymazaný");
+      this.toastr.success("Úspešne vymazaný");
       this.load();
     });
   }
@@ -142,8 +151,27 @@ export class ReviewLinkComponent implements OnInit {
     }
   }
 
-  addActor(): void {
-    
+  saveActor(): void {
+    if (this.roleActor != "" && this.nameActor != ""){}
+    this.http.post("/actor/saveActor", {
+      UID:this.uid,
+      nameActor:this.nameActor,
+      roleActor:this.roleActor,
+      imgActor:this.imgActor
+      }).subscribe(response=>{
+        this.toastr.error(response.message);
+        this.nameActor = "";
+        this.roleActor = "";
+        this.imgActor = "";
+        this.load();
+      });
   }
 
+  loadActor(): void {
+    this.http.post("/actor/loadActor", {
+      UID:this.uid
+      }).subscribe(response=>{
+        this.actors = response.actors;
+      });
+  }
 }

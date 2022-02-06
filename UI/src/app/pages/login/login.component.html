@@ -1,12 +1,12 @@
-<div class="bd">
+<div class="bd background">
     <div *ngIf="!user.logedIn" class="text-center container">
         <h1>Login</h1>
         <div class="col-24">
             <div>
-                <div class="col-24 col-md-11 text-right">
+                <div class="col-24 col-md-11 text-center text-md-right ">
                     <label for="userName"><b>Meno</b></label>
                 </div>
-                <div class="col-24 col-md-13 text-left">
+                <div class="col-24 col-md-13 text-center text-md-left">
                     <input  class="input-acc" type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userName" required >  
                 </div>
             </div>
@@ -22,7 +22,7 @@
         </div>
         
         <div class="">
-            <button class="btnN btt" (click)="login()" >Prihlasit</button>
+            <button class="btn" (click)="login()" >Prihlasit</button>
         </div>
     </div>
 

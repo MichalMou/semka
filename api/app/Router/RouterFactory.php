@@ -28,10 +28,15 @@ final class RouterFactory
 		$router->addRoute('reviews/deleteReview', 'Reviews:deleteReview'); 
 		$router->addRoute('reviews/editReview', 'Reviews:editReview'); 
 
-		$router->addRoute('comments/saveComment', 'comments:saveComment'); 
-		$router->addRoute('comments/loadComment', 'comments:loadComment'); 
-		$router->addRoute('comments/deleteComment', 'comments:deleteComment'); 
-		$router->addRoute('comments/editComment', 'comments:editComment');
+		$router->addRoute('comments/saveComment', 'Comments:saveComment'); 
+		$router->addRoute('comments/loadComment', 'Comments:loadComment'); 
+		$router->addRoute('comments/deleteComment', 'Comments:deleteComment'); 
+		$router->addRoute('comments/editComment', 'Comments:editComment');
+
+		$router->addRoute('actor/saveActor', 'Actor:saveActor'); 
+		$router->addRoute('actor/loadActor', 'Actor:loadActor'); 
+		$router->addRoute('actor/deleteActor', 'Actor:deleteActor'); 
+		$router->addRoute('actor/editActor', 'Actor:editActor');
 
 		$router->addRoute('user/login','User:login');
 		$router->addRoute('user/logout','User:logout');

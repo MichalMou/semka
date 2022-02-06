@@ -51,7 +51,11 @@ export class FilmyComponent implements OnInit {
       textRev:this.textRev,
       imgsRev:this.imgsRev
       }).subscribe(response=>{
-        this.toastr.error(response.message);
+        if (response.status) {
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error(response.message);
+        }
         this.loadRevs();
       });
     }
@@ -74,7 +78,7 @@ export class FilmyComponent implements OnInit {
     this.http.post("/reviews/deleteReview", {
       UID:uid
     }).subscribe(response=>{
-      this.toastr.error("Úspešne vymazané");
+      this.toastr.success("Úspešne vymazané");
       this.loadRevs();
     });
   }
