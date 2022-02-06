@@ -1,9 +1,9 @@
 <div class="rev bd background"> 
-    <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
+    <div (click)= "editShow()" *ngIf="user.rights > 1" class="edit options">
         <fa-icon [icon]="faEdit"></fa-icon>
     </div>
 
-    <div (click)= "delRev()" *ngIf="user.rights > 0" class="delete options"> 
+    <div (click)= "delRev()" *ngIf="user.rights > 1" class="delete options"> 
         <fa-icon [icon]="faDelete"></fa-icon>
     </div>
 
@@ -55,7 +55,7 @@
                 <h1>Herci</h1>
             </div>
 
-            <div>
+            <div *ngIf="user.rights > 1">
                 <div class="font-top mgt10 center">
                     <label class="inl-b" >
                         Pridať herca
@@ -100,7 +100,7 @@
             <h1>Komenty</h1>
         </div>
 
-        <form>
+        <form *ngIf="user.rights > 0 ">
             <textarea [(ngModel)]="newComment" class="comments-entry" name="textRev" id="review" rows="10"></textarea>
 
             <div class="center">

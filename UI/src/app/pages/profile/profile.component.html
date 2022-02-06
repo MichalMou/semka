@@ -2,20 +2,20 @@
     <div *ngIf="user.logedIn" class="text-center btm-bd">
         <h1>Profil</h1>
         <div class="col-24">
-            <div>
-                <div class="col-12 col-md-12 text-right">
-                    <label class="col-10 lbl" for="userName"><b>Meno:  </b></label>
+            <div class="flexbox">
+                <div class="half text-right">
+                    <label class="lbl" for="userName"><b>Meno:  </b></label>
                 </div>
-                <div class="col-12 col-md-12 text-left">
-                    <label class="col-10 lbl" for="email"><b>{{user.name}}</b></label>
+                <div class="half text-left">
+                    <label class="lbl" for="email"><b>{{user.name}}</b></label>
                 </div>
             </div>
 
-            <div class="col-24">
-                <div class="col-12 col-md-12 text-right">
+            <div class="flexbox">
+                <div class="half text-right">
                     <label class="col-10 lbl" for="email"><b>Email:  </b></label>
                 </div>
-                <div class="col-12 col-md-12 text-left">
+                <div class="half text-left">
                     <label class="col-10 lbl" for="email"><b>{{user.email}}</b></label>
                 </div>
             </div>
@@ -25,15 +25,6 @@
     <div *ngIf="user.logedIn" class="text-center">
         <div class="btm-bd">
             <h1>Zmeniť údaje</h1>
-            <div>
-                <div class="col-24 col-md-12 text-center text-md-right">
-                    <label class="col-10 lbl" for="userName"><b>Nové meno:</b></label>
-                </div>
-                <div class="col-24 col-md-12 text-center text-md-left">
-                    <input type="text" placeholder="Zadaj meno" name="userName" [(ngModel)]="userNewName" required >
-                </div>
-            </div>
-
             <div class="col-24">
                 <div class="col-24 col-md-12 text-center text-md-right">
                     <label class="col-10 lbl" for="pswd"><b>Nové heslo:</b></label>

@@ -1,10 +1,10 @@
 <div class="background bd"> 
     <div>
-        <div (click)= "editShow()" *ngIf="user.rights > 0" class="edit options">
+        <div (click)= "editShow()" *ngIf="user.rights > 1" class="edit options">
             <fa-icon [icon]="faEdit"></fa-icon>
         </div>
 
-        <div (click)= "deleteNews()" *ngIf="user.rights > 0" class="delete options"> 
+        <div (click)= "deleteNews()" *ngIf="user.rights > 1" class="delete options"> 
             <fa-icon [icon]="faDelete"></fa-icon>
         </div>
     </div>

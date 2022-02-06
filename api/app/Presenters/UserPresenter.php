@@ -137,9 +137,9 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $hashedPswd = md5($body->pswd.$body->userName);
 
             // pridat adminovi prava
-            $rights = 0;
+            $rights = 1;
             if($body->userName == "admin") {
-                $rights = 1;
+                $rights = 9;
             }
 
             // vykona query
@@ -229,25 +229,19 @@ final class UserPresenter extends Nette\Application\UI\Presenter
             $object->status = false;
             
             // zisti sa ci je meno alebo mail obsadeny
-            $data = $this->database->query("SELECT * FROM pouzivatelia WHERE user = ? OR mail = ? ", $body->userNewName, $body->newEmail);
+            $data = $this->database->query("SELECT * FROM pouzivatelia WHERE mail = ? ", $body->newEmail);
             $queryResult = $data->fetch();  
 
             // ak existuje tak vrati odpoved ze meno alebo email je uz pouzivany
             if ($data->getRowCount() != 0) {
-
-                // skontroluje sa ci je meno zabrane ak nie tak je email zabrany potom sa vrati odpoved 
-                if($queryResult->user == $body->userNewName) {
-                    $object->message = "Meno sa už používa. Zadajte iné.";  
-                } else {
-                    $object->message = "Email sa už používa. Zadajte iný.";  
-                }
-
+                // skontroluje sa ci je email zabrany potom sa vrati odpoved 
+                $object->message = "Email sa už používa. Zadajte iný.";       
             } else {
                 // priprava udajov na update
-                $newPswd = md5($body->newPswd.$body->userNewName);
+                $newPswd = md5($body->newPswd.$body->userName);
 
                 // zmena udajov v DB
-                $data_check = $this->database->query("UPDATE pouzivatelia SET user = ?, heslo = ?, mail = ? WHERE user = ?", $body->userNewName, $newPswd, $body->newEmail, $body->userName);
+                $data_check = $this->database->query("UPDATE pouzivatelia SET heslo = ?, mail = ? WHERE user = ?", $newPswd, $body->newEmail, $body->userName);
                
                 // test uspesnosti 
                 if($data_check->getRowCount() == 1) {

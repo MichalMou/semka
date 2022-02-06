@@ -73,8 +73,9 @@ export class FilmyComponent implements OnInit {
   }
 
 
-  // TODO prerobit lambda zapisane del a reload + prirobit edit do review
+  // prerobit lambda zapisane del a reload + prirobit edit do review
   deleteRev = (uid: any): void => {
+    console.log("delete");
     this.http.post("/reviews/deleteReview", {
       UID:uid
     }).subscribe(response=>{

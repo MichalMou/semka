@@ -45,7 +45,7 @@
             <li *ngIf="user.logedIn" >
                 <a (click)= "show()" routerLink = "/profil">Profil</a>
             </li>
-            <li *ngIf="user.logedIn">
+            <li *ngIf="user.logedIn" class="pointer">
                 <a (click)= "show()" (click)= "logout()">
                     <fa-icon [icon]="faIconSignOut"></fa-icon>
                     Odhlásiť

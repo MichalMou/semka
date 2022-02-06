@@ -22,14 +22,13 @@ export class ProfileComponent implements OnInit {
   }
 
   edit(): void {
-    if (this.userName == "" || this.email == "" || this.newPswd == "") {
+    if (this.newEmail == "" || this.newPswd == "") {
       this.toastr.error("Prosím vyplnte údaje.");
     } else {
       if (this.validateEmail()){
         
         this.http.post("/user/edit", {
           userName:this.user.getName(), 
-          userNewName:this.userNewName,
           newPswd:this.newPswd,
           email:this.user.getEmail(),
           newEmail:this.newEmail
@@ -38,10 +37,7 @@ export class ProfileComponent implements OnInit {
           if(response.status) {
             // uspesna zmena udajov
             this.toastr.success(response.message);  
-            // TODO zmenit udaje user
-            this.user.setName(this.userNewName);
             this.user.setEmail(this.newEmail);
-            this.userName = this.userNewName;
             this.email = this.newEmail;
           } else {
             // neuspesna zmena udajov

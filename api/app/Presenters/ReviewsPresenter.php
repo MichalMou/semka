@@ -166,7 +166,6 @@ final class ReviewsPresenter extends Nette\Application\UI\Presenter
         } else {
             $this->sendJson(null);
         } 
-        // TODO zmena obrazka
     } 
 
     public function actionLoad() {

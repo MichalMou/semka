@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faEdit, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
@@ -34,7 +34,7 @@ export class ReviewLinkComponent implements OnInit {
   @Input() deleteRev ? : any;
   @Input() reloadRevs ? : any;
 
-  constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService, private route: ActivatedRoute) { }
+  constructor(private http: RequestService,  public user: UserDataService, private toastr : ToastrService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.uid = this.route.snapshot.paramMap.get('uid');
@@ -56,7 +56,18 @@ export class ReviewLinkComponent implements OnInit {
   }
 
   delRev(): void {
-    this.deleteRev(this.data.UID);
+    // console.log(this.deleteRev);
+    // this.deleteRev(this.uid);
+    // console.log("delete");
+    var c = window.confirm("Naozaj chcete vymazať?");
+    if (c) {
+      this.http.post("/reviews/deleteReview", {
+        UID:this.uid
+      }).subscribe(response=>{
+        this.router.navigate(["filmy"]);
+      });
+    }
+    
   }
 
   editShow(): void {

@@ -59,6 +59,26 @@ body {
     height: auto;
 }
 
+.flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.half {
+    flex: 1;
+}
+
+// .col-4 {
+//     flex: 1 16.666666667%;
+// }
+
+// .col-6 {
+//     flex: 25%;
+// }
+
+// .col-8 {
+//     flex: 33.333333333%;
+// }
 .mgt25 {
     margin-top: 25px;
 }
@@ -158,7 +178,7 @@ h1 {
 }
 
 p {
-    text-align: left;
+    // text-align: left;
     font-size: 25px;
 }
 

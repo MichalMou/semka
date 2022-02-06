@@ -1,9 +1,9 @@
 <div class="actor-single" >
-    <div (click)= "showEditAct()" *ngIf="user.rights > 0" class="edit options actor-opt">
+    <div (click)= "showEditAct()" *ngIf="user.rights > 1" class="edit options actor-opt">
         <fa-icon [icon]="faEdit"></fa-icon>
     </div>
 
-    <div (click)= "deleteAct()" *ngIf="user.rights > 0" class="delete options actor-opt"> 
+    <div (click)= "deleteAct()" *ngIf="user.rights > 1" class="delete options actor-opt"> 
         <fa-icon [icon]="faDelete"></fa-icon>
     </div>
 
